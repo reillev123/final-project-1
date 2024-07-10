@@ -1,0 +1,25 @@
+body {
+    background-color: #ffe6f2;
+    color: #4d004d;
+}
+
+.bg-pink {
+    background-color: #ff66b2;
+}
+
+.bg-purple {
+    background-color: #cc00cc;
+}
+
+a.nav-link {
+    color: #fff !important;
+}
+
+a.nav-link:hover {
+    text-decoration: underline;
+}
+
+.custom-img-size {
+    width: 300px; /* Adjust the width as needed */
+}
+
