@@ -1,3 +1,4 @@
+<!--Creating contact us page with a header, paragraph, 3 input boxes to enter details and a submit button to send the message -->
 ---
 import Layout from '../layouts/Layouts.astro';
 ---
@@ -6,6 +7,7 @@ import Layout from '../layouts/Layouts.astro';
         <h2>Contact Us</h2>
         <p>We would love to hear from you! Please fill out the form below to get in touch with us.</p>
         <form class="mt-4">
+            <div class="form">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Your Name" required>
@@ -19,6 +21,7 @@ import Layout from '../layouts/Layouts.astro';
                 <textarea class="form-control" id="message" rows="3" placeholder="Your Message" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+            </div>
         </form>
     </div>
 </Layout>
