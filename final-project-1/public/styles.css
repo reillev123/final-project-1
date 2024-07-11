@@ -3,23 +3,48 @@ body {
     color: #4d004d;
 }
 
-.bg-pink {
-    background-color: #ff66b2;
+.header {
+    background-color: #ff66b2; /* sets header colour */
 }
 
-.bg-purple {
-    background-color: #cc00cc;
+.footer {
+    background-color: #cc00cc;  /* sets footer colour */
 }
 
 a.nav-link {
-    color: #fff !important;
+    color: #fff !important;  /* sets Nav bar  text colour */
 }
 
 a.nav-link:hover {
-    text-decoration: underline;
+    text-decoration: underline;   /* Underlines header links when hoovered over */
 }
 
 .custom-img-size {
-    width: 300px; /* Adjust the width as needed */
+    width: 300px; /* sets logo size */
 }
 
+.auth-container {
+    margin-top: 5rem;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-link {
+    color: #ff66b2;
+    cursor: pointer;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.nav {
+    float: right;   /* moves nav links to the right*/
+}
+
+.form-group {
+    color: #4d004d;  /* sets colour of contact us headers */
+}
