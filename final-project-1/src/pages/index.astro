@@ -1,23 +1,39 @@
 ---
-import Layout from '../layouts/Layouts.astro';
+import Layout from "../layouts/Layouts.astro";
 ---
+
 <Layout>
+    <!-- Main container -->
     <div class="container text-center mt-5">
         <div class="d-flex justify-content-center">
-            <img src="/sitelogo.png" alt="BakeMyDay" class="img-fluid rounded custom-img-size">
+            <!-- Logo image -->
+            <img
+                src="/sitelogo.png"
+                alt="BakeMyDay"
+                class="img-fluid rounded custom-img-size"
+            />
         </div>
         <div class="row mt-4">
+            <!-- Column for Fresh Bread section -->
             <div class="col-md-4">
                 <h3>Fresh Bread</h3>
-                <p>Our bread is baked fresh every morning.</p>
+                <p>Our favourite bread recipes</p>
             </div>
+            <!-- Column for Delicious Cakes section -->
             <div class="col-md-4">
                 <h3>Delicious Cakes</h3>
-                <p>Perfect for every occasion, our cakes are a treat for everyone.</p>
+                <p>
+                    Perfect for every occasion, our cake recipes are a treat for
+                    everyone.
+                </p>
             </div>
+            <!-- Column for Pastries section -->
             <div class="col-md-4">
                 <h3>Pastries</h3>
-                <p>From croissants to danishes, we have a variety of pastries.</p>
+                <p>
+                    From croissants to danishes, we have a variety of pastries
+                    recipes.
+                </p>
             </div>
         </div>
     </div>

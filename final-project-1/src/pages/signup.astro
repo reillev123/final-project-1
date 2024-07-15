@@ -1,0 +1,71 @@
+---
+import Layouts from "../layouts/Layouts.astro";
+---
+
+<Layouts>
+    <!-- Main container for the authentication form -->
+    <div class="auth-container d-flex justify-content-center mt-5">
+        <!-- Card to hold the form, with padding and fixed width -->
+        <div class="card p-4" style="width: 400px;">
+            <!-- Form title, currently set to "Sign up" -->
+            <h2 class="text-center mb-4">Sign up</h2>
+
+            <!-- Form element to handle user input, sending data via POST method -->
+            <form class="form-signup" action="signupconfirmation" method="post">
+                <!-- Form group for full name input -->
+                <div class="form-group-1">
+                    <label for="fullname">Full Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="fullname"
+                        placeholder="Enter your full name"
+                        required
+                    />
+                </div>
+
+                <!-- Form group for email input -->
+                <div class="form-group-1">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    />
+                </div>
+
+                <!-- Form group for password input -->
+                <div class="form-group-1 mt-3">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    />
+                </div>
+
+                <!-- Checkbox for agreeing to terms and conditions, required for form submission -->
+                <input type="checkbox" name="tandc" required /> Do you agree to our
+                <a href="terms">terms and conditions</a>?
+
+                <!-- Submit button to sign up, styled as a primary button and full-width -->
+                <button type="submit" class="btn btn-primary mt-4 w-100"
+                    >Sign up</button
+                >
+            </form>
+
+            <!-- Link to the login page for users who already have an account -->
+            <div class="text-center mt-3">
+                Already have an account? click here <a
+                    class="signup"
+                    href="/login">Login</a
+                >
+            </div>
+        </div>
+    </div>
+    <br>
+</Layouts>

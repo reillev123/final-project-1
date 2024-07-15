@@ -1,21 +1,32 @@
-<!--Creating layout for the site, importing header and footer classes using bootstap to style site  -->
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
-<html lang="en">
+<html>
 <head>
+    <html>
+<head>
+    <!-- Specifies the character encoding for the HTML document -->
     <meta charset="UTF-8">
+    <!-- Ensures proper rendering and touch zooming on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Sets the title of the webpage -->
     <title>BakeMyDay</title>
+    <!-- Links to the Bootstrap CSS for styling the webpage -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Links to an external stylesheet for custom styles -->
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
+    <!-- Includes the Header component at the top of the page -->
     <Header />
+    <!-- Main content area that expands to fill available space -->
     <main class="flex-fill">
+        <!-- Slot element where the main content of the page will be inserted -->
         <slot />
     </main>
+    <!-- Includes the Footer component at the bottom of the page -->
     <Footer />
 </body>
 </html>
+
