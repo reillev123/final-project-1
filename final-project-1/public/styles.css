@@ -4,6 +4,32 @@ body {
     color: #4d004d;
 }
 
+/* Styles for the scrollbar width */
+::-webkit-scrollbar {
+    width: 10px; /* Sets the width of the scrollbar */
+  }
+  
+  /* Styles for the scrollbar track */
+  ::-webkit-scrollbar-track {
+    background: #fff; 
+  }
+   
+  /* Styles for the scrollbar handle (thumb) */
+  ::-webkit-scrollbar-thumb {
+    background: #a535a5; 
+  }
+  
+  /* Styles for the scrollbar handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a535a5; 
+  }
+
+/* Styles for the header element */
+.header {
+    background-color: #ff66b2;
+}
+
+
 .header {
     background-color: #ff66b2; /* sets header color */
 }
@@ -19,8 +45,9 @@ a.logotext:hover {
     text-decoration: none;
 }
 
+/* sets footer color */
 .footer {
-    background-color: #cc00cc;  /* sets footer color */
+    background-color: #cc00cc;  
 }
 
 
@@ -29,12 +56,15 @@ a.nav-link-1 {
     color: #ff66b2;
 }
 
+/* sets all Nav bar links text colors */
 a.nav-link {
-    color: #fff !important;  /* sets all Nav bar links text colors */
+    color: #fff !important;  
 }
 
+/* Underlines header links when hovered over */
+
 a.nav-link:hover {
-    text-decoration: underline;   /* Underlines header links when hovered over */
+    text-decoration: underline;   
 }
 
 /* Aligns elements with the class 'search' to the end of the line */
@@ -78,8 +108,9 @@ a.nav-link:hover {
     width: 30%;
 }
 
+/* moves nav links to the right */
 .nav {
-    float: right;   /* moves nav links to the right */
+    float: right;   
     width: 60%;
 }
 
