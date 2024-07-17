@@ -1,0 +1,29 @@
+---
+
+---
+  
+  <button id="backToTopBtn" class="back-to-top">Top</button>
+  
+  <script>
+    // Function to show or hide the button
+    function scrollFunction() {
+      const backToTopBtn = document.getElementById("backToTopBtn");
+      if (window.scrollY > 20) {
+        backToTopBtn.style.display = "block";
+      } else {
+        backToTopBtn.style.display = "none";
+      }
+    }
+  
+    // Function to scroll back to the top of the page
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  
+    // Add event listeners after the DOM has loaded
+    document.addEventListener('DOMContentLoaded', (event) => {
+      window.addEventListener('scroll', scrollFunction);
+      document.getElementById('backToTopBtn').addEventListener('click', scrollToTop);
+    });
+  </script>
+  
