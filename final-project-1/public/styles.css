@@ -32,6 +32,7 @@ body {
 
 .header {
     background-color: #ff66b2; /* sets header color */
+    height:12vh;
 }
 
 a.logotext {
@@ -48,6 +49,7 @@ a.logotext:hover {
 /* sets footer color */
 .footer {
     background-color: #cc00cc;  
+    height:12vh
 }
 
 
@@ -90,6 +92,8 @@ a.nav-link:hover {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 5%;
+    width:400px;
+    margin-top: 3%;
 }
 
 /* Styles the link buttons with a specific color and cursor pointer */
@@ -185,6 +189,7 @@ a.nav-link:hover {
 /* Aligns elements with the class 'social' to the right */
 .social {
     float: right;
+    
 }
 
 /* Styles for social icons container, centering content and setting gap between items */
