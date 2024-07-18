@@ -1,0 +1,57 @@
+<!-- Creating header at top of site with site name and href links to various pages on the site  -->
+<header class="header text-white p-3">
+    <div class="container">
+        <!-- <h1 class="m-0">BakeMyDay</h1> -->
+         <div class="logotext">
+             <a class="logotext" href="/">BakeMyDay</a>
+        </div>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <!-- Creating dropdown for recipes -->
+
+                    <div class="dropdown">
+                        <a class="nav-link text-white" href="/recipes/recipes"
+                            >Recipes</a
+                        >
+                        <div class="dropdown-content">
+                            <a href="/recipes/dairy-free">Dairy Free</a>
+                            <a href="/recipes/gluten-free">Gluten Free</a>
+                            <a href="/recipes/kid-friendly">Kid-Friendly</a>
+                            <a href="/recipes/vegan">Vegan</a>
+                            
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <!-- Creating dropdown for users -->
+                    <div class="dropdown">
+                        <a class="nav-link text-white" href="#">Users</a>
+                        <div class="dropdown-content">
+                            <a href="/login">Login</a>
+                            <a href="/signup">Sign Up</a>
+                        </div>
+                    </div>
+                </li>
+                <!-- Add a search bar -->
+                <form class="search" action="/search" method="GET">
+                    <input
+                        type="text"
+                        name="query"
+                        placeholder="Search recipes..."
+                    />
+                    <button type="submit">Search</button>
+                </form>
+            </ul>
+        </nav>
+    </div>
+</header>

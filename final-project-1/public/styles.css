@@ -1,0 +1,232 @@
+/* Sets the background color and text color for the entire body */
+body {
+    background-color: #ffe6f2;
+    color: #4d004d;
+}
+
+/* Styles for the scrollbar width */
+::-webkit-scrollbar {
+    width: 10px; /* Sets the width of the scrollbar */
+  }
+  
+  /* Styles for the scrollbar track */
+  ::-webkit-scrollbar-track {
+    background: #fff; 
+  }
+   
+  /* Styles for the scrollbar handle (thumb) */
+  ::-webkit-scrollbar-thumb {
+    background: #a535a5; 
+  }
+  
+  /* Styles for the scrollbar handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a535a5; 
+  }
+
+/* Styles for the header element */
+.header {
+    background-color: #ff66b2;
+}
+
+
+.header {
+    background-color: #ff66b2; /* sets header color */
+    height:12vh;
+}
+
+a.logotext {
+    font-size: 200%;
+    color: white;
+}
+
+a.logotext:hover {
+    font-size: 200%;
+    color: white;
+    text-decoration: none;
+}
+
+/* sets footer color */
+.footer {
+    background-color: #cc00cc;  
+    height:12vh
+}
+
+
+/* Sets the text color for specific navigation links */
+a.nav-link-1 {
+    color: #ff66b2;
+}
+
+/* sets all Nav bar links text colors */
+a.nav-link {
+    color: #fff !important;  
+}
+
+/* Underlines header links when hovered over */
+
+a.nav-link:hover {
+    text-decoration: underline;   
+}
+
+/* Aligns elements with the class 'search' to the end of the line */
+.search {
+    float: right;
+}
+
+/* Custom size for images, centered with block display and automatic margins */
+.custom-img-size {
+    width: 230px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Sets margin-top for elements with class 'auth-container' */
+.auth-container {
+    margin-top: 5rem;
+}
+
+/* Styles the card element with rounded corners and box shadow */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5%;
+    width:400px;
+    margin-top: 3%;
+}
+
+/* Styles the link buttons with a specific color and cursor pointer */
+.btn-link {
+    color: #ff66b2;
+    cursor: pointer;
+}
+
+/* Underlines link buttons when hovered over */
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.logotext {
+    float: left;
+    width: 30%;
+}
+
+/* moves nav links to the right */
+.nav {
+    float: right;   
+    width: 60%;
+}
+
+/* Styles for the dropdown menu */
+.dropdown {
+    position: relative;
+}
+
+/* Styles the dropdown button with a cursor pointer */
+.dropbtn {
+    cursor: pointer;
+}
+
+/* Styles for the dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Styles for the links inside the dropdown content */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Changes background color of dropdown links when hovered over */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Displays the dropdown content when the dropdown is hovered over */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Styles for the search container, aligning items to the center and pushing it to the left */
+.search {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Styles for the form element, setting width and centering it */
+.form {
+    width: 70%;
+    padding-left: 30%;  /* centering contact form */
+    padding-bottom: 1%;
+}
+
+.form-group {
+    color: #4d004d;  /* sets color of contact us headers */
+}
+
+/* Styles for buttons with a specific background and border color */
+.btn {
+    background-color: #df1fdf;
+    border-color: #cc00cc;
+}
+
+/* Changes button color when hovered over */
+.btn:hover {
+    background-color: pink;
+    color: #4d004d;
+}
+
+/* Aligns elements with the class 'social' to the right */
+.social {
+    float: right;
+    
+}
+
+/* Styles for social icons container, centering content and setting gap between items */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Styles for social icon links, removing text decoration */
+.social-icons a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #4d004d; /* Changes color of social icon links when hovered over */
+
+}
+
+/* Sets the size for social icon SVGs */
+.social-icons svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Styles back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    display: none; /* Hidden by default */
+    background-color: #ff66b2 ;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+  }
