@@ -43,15 +43,10 @@
                     </div>
                 </li>
                 <!-- Add a search bar -->
-                <form class="search" action="/search" method="GET">
-                    <input
-                        type="text"
-                        name="query"
-                        placeholder="Search recipes..."
-                    />
-                    <button type="submit">Search</button>
-                </form>
-                
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
             </ul>
         </nav>
     </div>
