@@ -26,14 +26,10 @@ body {
 
 /* Styles for the header element */
 .header {
-    background-color: #ff66b2;
+    background-color: #ff66b2;   
+     height:12vh;
 }
 
-
-.header {
-    background-color: #ff66b2; /* sets header color */
-    height:12vh;
-}
 
 a.logotext {
     font-size: 200%;
@@ -49,7 +45,7 @@ a.logotext:hover {
 /* sets footer color */
 .footer {
     background-color: #cc00cc;  
-    height:12vh
+    height:12vh;
 }
 
 
@@ -72,7 +68,9 @@ a.nav-link:hover {
 /* Aligns elements with the class 'search' to the end of the line */
 .search {
     float: right;
+
 }
+
 
 /* Custom size for images, centered with block display and automatic margins */
 .custom-img-size {
@@ -110,12 +108,13 @@ a.nav-link:hover {
 .logotext {
     float: left;
     width: 30%;
+    margin-top: 1%;
 }
 
 /* moves nav links to the right */
 .nav {
     float: right;   
-    width: 60%;
+    margin-top: 2%;
 }
 
 /* Styles for the dropdown menu */
@@ -156,12 +155,6 @@ a.nav-link:hover {
     display: block;
 }
 
-/* Styles for the search container, aligning items to the center and pushing it to the left */
-.search {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-}
 
 /* Styles for the form element, setting width and centering it */
 .form {
