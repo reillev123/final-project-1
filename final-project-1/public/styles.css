@@ -186,6 +186,10 @@ a.nav-link:hover {
     color: #4d004d;
 }
 
+.sitemap {
+    padding-left: 1%;
+}
+
 /* Aligns elements with the class 'social' to the right */
 .social {
     float: right;
