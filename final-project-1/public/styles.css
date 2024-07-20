@@ -42,12 +42,6 @@ a.logotext:hover {
     text-decoration: none;
 }
 
-/* sets footer color */
-.footer {
-    background-color: #cc00cc;  
-    height:12vh;
-}
-
 
 /* Sets the text color for specific navigation links */
 a.nav-link-1 {
@@ -69,29 +63,6 @@ a.nav-link:hover {
 .search {
     float: right;
 
-}
-
-
-/* Custom size for images, centered with block display and automatic margins */
-.custom-img-size {
-    width: 230px; 
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Sets margin-top for elements with class 'auth-container' */
-.auth-container {
-    margin-top: 5rem;
-}
-
-/* Styles the card element with rounded corners and box shadow */
-.card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 5%;
-    width:400px;
-    margin-top: 3%;
 }
 
 /* Styles the link buttons with a specific color and cursor pointer */
@@ -179,6 +150,34 @@ a.nav-link:hover {
     color: #4d004d;
 }
 
+/* Custom size for images, centered with block display and automatic margins */
+.custom-img-size {
+    width: 230px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Sets margin-top for elements with class 'auth-container' */
+.auth-container {
+    margin-top: 5rem;
+}
+
+/* Styles the card element with rounded corners and box shadow */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5%;
+    width:400px;
+    margin-top: 3%;
+}
+
+/* sets footer color */
+.footer {
+    background-color: #cc00cc;  
+    height:12vh;
+}
+
 .sitemap {
     padding-left: 1%;
 }
@@ -202,9 +201,9 @@ a.nav-link:hover {
     text-decoration: none;
 }
 
+/* Changes color of social icon links when hovered over */
 .social-icons a:hover {
-    color: #4d004d; /* Changes color of social icon links when hovered over */
-
+    color: #a535a5; 
 }
 
 /* Sets the size for social icon SVGs */
@@ -212,6 +211,26 @@ a.nav-link:hover {
     width: 24px;
     height: 24px;
 }
+
+#popup {
+    display: none;
+    position: absolute;
+    top: -10px; /* Adjust as needed */
+    left: 100%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    background-color: #ff66b2 ;
+    color: #fff;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+
+  #share-svg:hover {
+    fill: #a535a5; /* Change to desired hover color */
+    cursor: pointer;
+  }
 
 /* Styles back to top button */
 .back-to-top {
