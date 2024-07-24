@@ -11,7 +11,5 @@
   },
   "dependencies": {
     "astro": "^4.11.5"
-  },
-  "deploy": "touch ./output_folder/.nojekyll && gh-pages -d output_folder -t true"
-
+  }
 }

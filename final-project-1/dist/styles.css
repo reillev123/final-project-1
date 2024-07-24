@@ -178,6 +178,10 @@ body {
     color: #4d004d; 
 }
 
+.form-group-1{
+padding-top: 2%
+}
+
 /* Styles for buttons with a specific background and border color */
 .btn {
     background-color: #df1fdf;
@@ -208,7 +212,7 @@ body {
     border-radius: 10px;
     padding: 5%;
     width: 400px;
-    margin-top: 3%;
+    padding-top: 5%;
 }
 
 /* Styles for the signup text */
@@ -219,6 +223,11 @@ body {
 /* Styles for the terms text */
 .terms {
     color: #ff66b2;
+}
+
+/* Styles for the checkbox */
+.checkbox {
+   accent-color: #ff66b2;
 }
 
 /* Sets footer color */
