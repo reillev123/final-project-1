@@ -23,29 +23,47 @@
   </div>
 
   <script>
-  
+// URL to be copied to the clipboard
 const link = "http://localhost:4322/";
-const script = 
-  document.addEventListener('DOMContentLoaded', () => {
-    const svgElement = document.getElementById('share-svg');
-    const popup = document.getElementById('popup');
-    
-    svgElement.addEventListener('click', () => {
-      navigator.clipboard.writeText('http://localhost:4322/').then(() => {
-        popup.style.display = 'block';
+
+// Add an event listener that triggers when the DOM content is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Get the SVG element with the ID 'share-svg'
+  const svgElement = document.getElementById('share-svg');
+
+  // Get the popup element with the ID 'popup'
+  const popup = document.getElementById('popup');
+
+  // Add a click event listener to the SVG element
+  svgElement.addEventListener('click', () => {
+
+    // Use the Clipboard API to write the link text to the clipboard
+    navigator.clipboard.writeText(link).then(() => {
+      
+      // Show the popup by setting its display to 'block'
+      popup.style.display = 'block';
+
+      // Set a timeout to change the popup's opacity to 1 (visible)
+      setTimeout(() => {
+        popup.style.opacity = '1';
+      }, 0);
+
+      // Set another timeout to hide the popup after 2 seconds
+      setTimeout(() => {
+        // Set the popup's opacity to 0 (invisible)
+        popup.style.opacity = '0';
+
+        // After the transition ends (300ms), set its display to 'none'
         setTimeout(() => {
-          popup.style.opacity = '1';
-        }, 0);
-        setTimeout(() => {
-          popup.style.opacity = '0';
-          setTimeout(() => {
-            popup.style.display = 'none';
-          }, 300); // Matches the CSS transition duration
-        }, 2000);
-      }).catch((err) => {
-        console.error('Failed to copy link: ', err);
-      });
+          popup.style.display = 'none';
+        }, 300); // Match this duration to CSS transition duration for smooth hiding
+      }, 2000); // Duration to keep the popup visible
+
+    }).catch((err) => {
+      // Log any error that occurs during the clipboard write operation
+      console.error('Failed to copy link: ', err);
     });
-        });
-;
-  
+  });
+});
+</script>

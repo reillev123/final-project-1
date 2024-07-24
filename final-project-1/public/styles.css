@@ -6,109 +6,89 @@ body {
 
 /* Styles for the scrollbar width */
 ::-webkit-scrollbar {
-    width: 10px; /* Sets the width of the scrollbar */
-  }
-  
-  /* Styles for the scrollbar track */
-  ::-webkit-scrollbar-track {
-    background: #fff; 
-  }
-   
-  /* Styles for the scrollbar handle (thumb) */
-  ::-webkit-scrollbar-thumb {
-    background: #a535a5; 
-  }
-  
-  /* Styles for the scrollbar handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #a535a5; 
-  }
+    width: 10px; 
+}
 
-/* Styles for the header element */
+/* Styles for the scrollbar track */
+::-webkit-scrollbar-track {
+    background: #fff; 
+}
+
+/* Styles for the scrollbar handle (thumb) */
+::-webkit-scrollbar-thumb {
+    background: #a535a5; 
+}
+
+/* Styles for the scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #a535a5; 
+}
+
+/* Styles for the header */
 .header {
     background-color: #ff66b2;   
-     height:12vh;
+    height: 12vh;
+    z-index: 1000; /* Ensure header is above other elements */
 }
 
+/* Styles for the container inside the header */
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1vh;
+}
 
-a.logotext {
-    font-size: 200%;
+/* Styles for the header content */
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Styles for the logo text */
+.logotext a {
     color: white;
+    text-decoration: none;
+    font-size: 2rem;
 }
 
-a.logotext:hover {
-    font-size: 200%;
+/* Styles for the navigation menu */
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Styles for the navigation list */
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for each navigation item */
+.nav-item {
+    margin-left: 1rem;
+}
+
+/* Styles for navigation links */
+.nav-link {
     color: white;
     text-decoration: none;
 }
 
-
-/* Sets the text color for specific navigation links */
-a.nav-link-1 {
-    color: #ff66b2;
-}
-
-/* sets all Nav bar links text colors */
-a.nav-link {
-    color: #fff !important;  
-}
-
-/* Underlines header links when hovered over */
-
-a.nav-link:hover {
-    text-decoration: underline;   
-}
-
-/* Aligns elements with the class 'search' to the end of the line */
-.search {
-    float: right;
-
-}
-
-/* Styles the link buttons with a specific color and cursor pointer */
-.btn-link {
-    color: #ff66b2;
-    cursor: pointer;
-}
-
-/* Underlines link buttons when hovered over */
-.btn-link:hover {
-    text-decoration: underline;
-}
-
-.logotext {
-    float: left;
-    width: 30%;
-    margin-top: 1%;
-}
-
-/* moves nav links to the right */
-.nav {
-    float: right;   
-    margin-top: 2%;
-}
-
-/* Styles for the dropdown menu */
-.dropdown {
-    position: relative;
-}
-
-/* Styles the dropdown button with a cursor pointer */
-.dropbtn {
-    cursor: pointer;
-}
-
-/* Styles for the dropdown content */
+/* Styles for dropdown content */
 .dropdown-content {
     display: none;
+    min-width: 160px;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
-/* Styles for the links inside the dropdown content */
+/* Styles for links inside the dropdown */
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
@@ -116,26 +96,86 @@ a.nav-link:hover {
     display: block;
 }
 
-/* Changes background color of dropdown links when hovered over */
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-/* Displays the dropdown content when the dropdown is hovered over */
+/* Display dropdown content on hover */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
+/* Styles for the hamburger menu icon */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+/* Styles for each line in the hamburger menu icon */
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+/* Media query for screens with max width of 768px */
+@media (max-width: 768px) {
+    /* Hide the navigation menu initially */
+    .nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #ff66b2;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        z-index: 1001; /* Ensure nav is above other elements */
+    }
+
+    /* Styles for the navigation list in mobile view */
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Styles for each navigation item in mobile view */
+    .nav-item {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    /* Styles for navigation links in mobile view */
+    .nav-link {
+        padding: 1rem;
+        display: block;
+    }
+
+    /* Display the hamburger menu icon */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Styles for active navigation menu in mobile view */
+    .nav-active {
+        display: flex;
+    }
+
+    /* Adjust the dropdown content position in mobile view */
+    .dropdown-content {
+        margin-left: 40%;
+    }
+}
 
 /* Styles for the form element, setting width and centering it */
 .form {
     width: 70%;
-    padding-left: 30%;  /* centering contact form */
+    padding-left: 30%;  /* Centering contact form */
     padding-bottom: 1%;
 }
 
+/* Styles for the form group, setting the text color */
 .form-group {
-    color: #4d004d;  /* sets color of contact us headers */
+    color: #4d004d; 
 }
 
 /* Styles for buttons with a specific background and border color */
@@ -166,26 +206,41 @@ a.nav-link:hover {
 /* Styles the card element with rounded corners and box shadow */
 .card {
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 5%;
-    width:400px;
+    width: 400px;
     margin-top: 3%;
 }
 
-/* sets footer color */
-.footer {
-    background-color: #cc00cc;  
-    height:12vh;
+/* Styles for the signup text */
+.signup {
+    color: #ff66b2;
 }
 
+/* Styles for the terms text */
+.terms {
+    color: #ff66b2;
+}
+
+/* Sets footer color */
+.footer {
+    background-color: #cc00cc;  
+    height: 18vh;
+    position: sticky;
+}
+
+/* Styles for the sitemap */
 .sitemap {
     padding-left: 1%;
+}
+
+/* Sets the text color for specific navigation links */
+a.nav-link-1 {
+    color: #ff66b2;
 }
 
 /* Aligns elements with the class 'social' to the right */
 .social {
     float: right;
-    
 }
 
 /* Styles for social icons container, centering content and setting gap between items */
@@ -212,6 +267,7 @@ a.nav-link:hover {
     height: 24px;
 }
 
+/* Styles for the popup element */
 #popup {
     display: none;
     position: absolute;
@@ -219,30 +275,31 @@ a.nav-link:hover {
     left: 100%;
     transform: translateX(-50%);
     padding: 8px 12px;
-    background-color: #ff66b2 ;
+    background-color: #ff66b2;
     color: #fff;
     border-radius: 4px;
     opacity: 0;
     transition: opacity 0.3s;
     white-space: nowrap;
-  }
+}
 
-  #share-svg:hover {
-    fill: #a535a5; /* Change to desired hover color */
+/* Styles for the share icon on hover */
+#share-svg:hover {
+    fill: #a535a5; 
     cursor: pointer;
-  }
+}
 
-/* Styles back to top button */
+/* Styles for the back to top button */
 .back-to-top {
     position: fixed;
     bottom: 10px;
     right: 20px;
     display: none; /* Hidden by default */
-    background-color: #ff66b2 ;
+    background-color: #ff66b2;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    z-index: 1000;
-  }
+    z-index: 1000; /* Ensure button is above other elements */
+}
