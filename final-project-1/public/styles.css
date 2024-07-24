@@ -175,7 +175,8 @@ a.nav-link:hover {
 /* sets footer color */
 .footer {
     background-color: #cc00cc;  
-    height:12vh;
+    height:16vh;
+    position: sticky;
 }
 
 .sitemap {

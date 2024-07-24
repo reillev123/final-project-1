@@ -1,5 +1,5 @@
 <!-- Creating header at top of site with site name and href links to various pages on the site  -->
-<header class="header text-white p-3">
+ <header class="header text-white p-3">
     <div class="container">
         <!-- <h1 class="m-0">BakeMyDay</h1> -->
          <div class="logotext">
@@ -43,14 +43,10 @@
                     </div>
                 </li>
                 <!-- Add a search bar -->
-                <form class="search" action="/search" method="GET">
-                    <input
-                        type="text"
-                        name="query"
-                        placeholder="Search recipes..."
-                    />
-                    <button type="submit">Search</button>
-                </form>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn" type="submit">Search</button>
+                  </form>
                 
             </ul>
         </nav>
