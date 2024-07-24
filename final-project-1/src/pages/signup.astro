@@ -10,7 +10,6 @@ import Layouts from "../layouts/Layouts.astro";
         <div class="card p-4" style="width: 400px;">
             <!-- Form title, currently set to "Sign up" -->
             <h2 class="text-center mb-4">Sign up</h2>
-
             <!-- Form element to handle user input, sending data via POST method -->
             <form class="form-signup" action="signupconfirmation" method="post">
                 <!-- Form group for full name input -->
@@ -50,7 +49,7 @@ import Layouts from "../layouts/Layouts.astro";
                 </div>
 
                 <!-- Checkbox for agreeing to terms and conditions, required for form submission -->
-                <input type="checkbox" name="tandc" required /> Do you agree to our
+                <input class="checkbox" type="checkbox" name="tandc" required /> Do you agree to our
                 <a  class="terms" href="terms">terms and conditions</a>?
 
                 <!-- Submit button to sign up -->
