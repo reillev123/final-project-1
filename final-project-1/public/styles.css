@@ -24,108 +24,128 @@ body {
     background: #a535a5; 
   }
 
-/* Styles for the header element */
 .header {
     background-color: #ff66b2;   
-     height:12vh;
+    height:12vh;
+    z-index: 1000; /* Ensure header is above other elements */
+
 }
 
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1vh;
+}
 
-a.logotext {
-    font-size: 200%;
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.logotext a {
     color: white;
+    text-decoration: none;
+    font-size: 2rem;
 }
 
-a.logotext:hover {
-    font-size: 200%;
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 1rem;
+}
+
+.nav-link {
     color: white;
     text-decoration: none;
 }
 
-
-/* Sets the text color for specific navigation links */
-a.nav-link-1 {
-    color: #ff66b2;
-}
-
-/* sets all Nav bar links text colors */
-a.nav-link {
-    color: #fff !important;  
-}
-
-/* Underlines header links when hovered over */
-
-a.nav-link:hover {
-    text-decoration: underline;   
-}
-
-/* Aligns elements with the class 'search' to the end of the line */
-.search {
-    float: right;
-
-}
-
-/* Styles the link buttons with a specific color and cursor pointer */
-.btn-link {
-    color: #ff66b2;
-    cursor: pointer;
-}
-
-/* Underlines link buttons when hovered over */
-.btn-link:hover {
-    text-decoration: underline;
-}
-
-.logotext {
-    float: left;
-    width: 30%;
-    margin-top: 1%;
-}
-
-/* moves nav links to the right */
-.nav {
-    float: right;   
-    margin-top: 2%;
-}
-
-/* Styles for the dropdown menu */
-.dropdown {
-    position: relative;
-}
-
-/* Styles the dropdown button with a cursor pointer */
-.dropbtn {
-    cursor: pointer;
-}
-
-/* Styles for the dropdown content */
 .dropdown-content {
     display: none;
+    min-width: 160px;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
-/* Styles for the links inside the dropdown content */
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
+ 
     text-decoration: none;
     display: block;
 }
 
-/* Changes background color of dropdown links when hovered over */
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-/* Displays the dropdown content when the dropdown is hovered over */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #ff66b2;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        z-index: 1001; /* Ensure nav is above other elements */
+    }
+
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-item {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    .nav-link {
+        padding: 1rem;
+        display: block;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-active {
+        display: flex;
+    }
+
+    .dropdown-content {
+     margin-left: 40%;
+    }
+}
 
 /* Styles for the form element, setting width and centering it */
 .form {
@@ -172,15 +192,28 @@ a.nav-link:hover {
     margin-top: 3%;
 }
 
+.signup{
+    color: #ff66b2;
+}
+
+.terms{
+    color: #ff66b2;
+}
+
 /* sets footer color */
 .footer {
     background-color: #cc00cc;  
-    height:16vh;
+    height:18vh;
     position: sticky;
 }
 
 .sitemap {
     padding-left: 1%;
+}
+
+/* Sets the text color for specific navigation links */
+a.nav-link-1 {
+    color: #ff66b2;
 }
 
 /* Aligns elements with the class 'social' to the right */
