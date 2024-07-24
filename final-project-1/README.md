@@ -64,6 +64,8 @@ BakeMyDay/
 │   ├── api.js
 │
 └── README.md
+
+
 Installation
 To set up the BakeMyDay website locally, follow these steps:
 
