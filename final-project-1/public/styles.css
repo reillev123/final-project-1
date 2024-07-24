@@ -26,14 +26,10 @@ body {
 
 /* Styles for the header element */
 .header {
-    background-color: #ff66b2;
+    background-color: #ff66b2;   
+     height:12vh;
 }
 
-
-.header {
-    background-color: #ff66b2; /* sets header color */
-    height:12vh;
-}
 
 a.logotext {
     font-size: 200%;
@@ -44,12 +40,6 @@ a.logotext:hover {
     font-size: 200%;
     color: white;
     text-decoration: none;
-}
-
-/* sets footer color */
-.footer {
-    background-color: #cc00cc;  
-    height:12vh
 }
 
 
@@ -72,28 +62,7 @@ a.nav-link:hover {
 /* Aligns elements with the class 'search' to the end of the line */
 .search {
     float: right;
-}
 
-/* Custom size for images, centered with block display and automatic margins */
-.custom-img-size {
-    width: 230px; 
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Sets margin-top for elements with class 'auth-container' */
-.auth-container {
-    margin-top: 5rem;
-}
-
-/* Styles the card element with rounded corners and box shadow */
-.card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 5%;
-    width:400px;
-    margin-top: 3%;
 }
 
 /* Styles the link buttons with a specific color and cursor pointer */
@@ -110,12 +79,13 @@ a.nav-link:hover {
 .logotext {
     float: left;
     width: 30%;
+    margin-top: 1%;
 }
 
 /* moves nav links to the right */
 .nav {
     float: right;   
-    width: 60%;
+    margin-top: 2%;
 }
 
 /* Styles for the dropdown menu */
@@ -156,12 +126,6 @@ a.nav-link:hover {
     display: block;
 }
 
-/* Styles for the search container, aligning items to the center and pushing it to the left */
-.search {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-}
 
 /* Styles for the form element, setting width and centering it */
 .form {
@@ -184,6 +148,34 @@ a.nav-link:hover {
 .btn:hover {
     background-color: pink;
     color: #4d004d;
+}
+
+/* Custom size for images, centered with block display and automatic margins */
+.custom-img-size {
+    width: 230px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Sets margin-top for elements with class 'auth-container' */
+.auth-container {
+    margin-top: 5rem;
+}
+
+/* Styles the card element with rounded corners and box shadow */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5%;
+    width:400px;
+    margin-top: 3%;
+}
+
+/* sets footer color */
+.footer {
+    background-color: #cc00cc;  
+    height:12vh;
 }
 
 .sitemap {
@@ -209,9 +201,9 @@ a.nav-link:hover {
     text-decoration: none;
 }
 
+/* Changes color of social icon links when hovered over */
 .social-icons a:hover {
-    color: #4d004d; /* Changes color of social icon links when hovered over */
-
+    color: #a535a5; 
 }
 
 /* Sets the size for social icon SVGs */
@@ -219,6 +211,26 @@ a.nav-link:hover {
     width: 24px;
     height: 24px;
 }
+
+#popup {
+    display: none;
+    position: absolute;
+    top: -10px; /* Adjust as needed */
+    left: 100%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    background-color: #ff66b2 ;
+    color: #fff;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+
+  #share-svg:hover {
+    fill: #a535a5; /* Change to desired hover color */
+    cursor: pointer;
+  }
 
 /* Styles back to top button */
 .back-to-top {
