@@ -2,6 +2,7 @@
 body {
     background-color: #ffe6f2;
     color: #4d004d;
+    background-image: url('/final-project-1/images/PWBackground.png');
 }
 
 /* Styles for the scrollbar width */
@@ -196,7 +197,7 @@ padding-top: 2%
 
 /* Custom size for images, centered with block display and automatic margins */
 .custom-img-size {
-    width: 230px; 
+    width: 280px; 
     display: block;
     margin-left: auto;
     margin-right: auto;
