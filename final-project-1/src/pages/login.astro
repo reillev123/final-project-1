@@ -1,6 +1,5 @@
 ---
 import Layouts from "../layouts/Layouts.astro";
-
 ---
 <Layouts>
     <title>Login</title>
@@ -9,7 +8,7 @@ import Layouts from "../layouts/Layouts.astro";
       <div class="card p-4">
           <h2 class="text-center mb-4">Login</h2>
           <!-- Form element to handle user input, sending data via POST method -->
-          <form action="/final-project-1" method="post">
+          <form id="loginForm" action="/final-project-1" method="post">
               <!-- Form group for email input -->
               <div class="form-group">
                   <label for="email">Email</label>
@@ -32,4 +31,29 @@ import Layouts from "../layouts/Layouts.astro";
           </div>
       </div>
   </div>
+
+  <script>
+    document.getElementById('loginForm')?.addEventListener('submit', function(event) {
+        // Hardcoded credentials
+        const validEmail = 'evereilly@bakemyday.com';
+        const validPassword = 'password123';
+        
+        // Cast elements to HTMLInputElement to access the value property
+        const emailInput = document.getElementById('email') as HTMLInputElement;
+        const passwordInput = document.getElementById('password') as HTMLInputElement;
+        
+        // Get the values from the form fields
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        
+        // Check if the entered credentials match the hardcoded ones
+        if (email !== validEmail || password !== validPassword) {
+            // Prevent the form from submitting
+            event.preventDefault();
+            
+            // Display an error message (could be a modal, alert, etc.)
+            alert('Invalid email or password. Please try again.');
+        }
+    });
+  </script>
 </Layouts>
