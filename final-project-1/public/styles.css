@@ -2,7 +2,7 @@
 body {
     background-color: #ffe6f2;
     color: #4d004d;
-    background-image: url('/final-project-1/images/PWBackground.png');
+    background-image: url('/final-project-1/images/PWBackgroundBig.png');
 }
 
 /* Styles for the scrollbar width */
@@ -201,6 +201,7 @@ padding-top: 2%
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 1%;
 }
 
 /* Sets margin-top for elements with class 'auth-container' */
@@ -230,6 +231,8 @@ padding-top: 2%
 .checkbox {
    accent-color: #ff66b2;
 }
+
+
 
 /* Sets footer color */
 .footer {
