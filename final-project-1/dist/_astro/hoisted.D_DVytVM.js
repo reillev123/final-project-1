@@ -1,1 +1,0 @@
-import"./hoisted.ckDVDfCL.js";document.getElementById("loginForm")?.addEventListener("submit",function(e){const t="evereilly@bakemyday.com",a="password123",n=document.getElementById("email"),o=document.getElementById("password"),s=n.value,l=o.value;(s!==t||l!==a)&&(e.preventDefault(),alert("Invalid email or password. Please try again."))});
