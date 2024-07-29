@@ -7,7 +7,7 @@ Overview
 Features
 Directory Structure
 Installation
-Contributing
+Hosted Site
 Contact
 
 
@@ -15,10 +15,12 @@ Overview
 BakeMyDay is a comprehensive baking website that offers a variety of recipes. Our mission is to inspire and guide bakers of all levels to create delicious baked goods with ease and confidence.
 
 Features
+Carousel's on Home and About pages: Selection of baking images automatically rotating 
 Recipe Collection: A vast collection of recipes categorized by type and dietary restrictions (cakes, cookies, bread, vegan, gluten-free, dairy-free, etc.).
 Contact us Form: A form to contact us any questions or queries you have. 
 Login / Signup forms: login or sign up so you can save your favourite recipes
 About: An about us page, why we decided to create BakeMyDay
+Favourites: A page where all your favourite recipes are stored
 Sitemap: Adding a sitemap to see all pages on the website 
 Search Bar: search for your favourite recipes 
 Social Media Icons: Check us out on Social Media! 
@@ -31,7 +33,12 @@ BakeMyDay/
 ├── public/
 │   ├── styles.css
 │   └── images/
-│       ├── sitelogo.png
+│       ├── BakeMyDay.png
+│       ├── brownie.png
+│       ├── cake.png
+│       ├── cookies.png
+│       ├── donuts.png
+│       ├── PWBackgroundBig.png
 │       └── favicon.ico
 │
 ├── components/
@@ -44,12 +51,12 @@ BakeMyDay/
 │   ├── layouts.astro
 │
 ├── pages/
-│   └── recipes/
-│       ├── dairy-free.astro
-│       ├── gluten-free.astro
-│       ├── kid-friendly.astro
-│       ├── recipes.astro
-│       └── vegan.astro
+|   ├── favourites.astro
+│   ├── dairy-free.astro
+│   ├── gluten-free.astro
+│   ├── kid-friendly.astro
+│   ├── recipes.astro
+│   ├── vegan.astro
 │   ├── about.astro
 │   ├── contact.astro
 │   ├── index.astro
@@ -78,16 +85,8 @@ Start the development server:
 npm start
 The website should now be running at http://localhost:4322/.
 
-
-Contributing
-We welcome contributions from the community! If you'd like to contribute to BakeMyDay, please follow these steps:
-
-Fork the repository.
-Create a new branch (git checkout -b feature/new-feature).
-Make your changes and commit them (git commit -m 'Add new feature').
-Push to the branch (git push origin feature/new-feature).
-Create a Pull Request.
-Please ensure your code adheres to our coding standards and includes appropriate tests.
+Hosted Site 
+Our website is hosted at https://reillev123.github.io/final-project-1/
 
 Contact
 If you have any questions, feedback, or issues, please contact us at [EveReilly@bakemyday.com].
