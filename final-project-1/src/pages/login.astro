@@ -55,5 +55,21 @@ import Layouts from "../layouts/Layouts.astro";
            alert('Invalid email or password. Please try again.');
         }
     });
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+            
+            // Typecast event target to HTMLFormElement
+            const form = event.target as HTMLFormElement;
+            
+            // Check if the form is valid
+            if (form.checkValidity()) {
+                // If the form is valid, redirect to the new page
+                window.location.href = "/final-project-1";
+            } else {
+                // If the form is not valid, show validation errors
+                form.reportValidity();
+            }
+        });
   </script> 
 </Layouts>

@@ -17,7 +17,7 @@ import Layout from "../layouts/Layouts.astro";
             Let's create sweet memories and share the joy of baking together.
             Happy baking from all of us at BakeMyDay!
         </p>
-        <form action="login/" method="post"> 
+        <form id="confirmationForm"> 
             <button
                 type="submit"
                 class="btn mt-4 w-20">Login</button
@@ -30,4 +30,24 @@ import Layout from "../layouts/Layouts.astro";
         alt="BakeMyDay"
         class="img-fluid rounded custom-img-size"
     />
+    <script>
+        document.getElementById("confirmationForm").addEventListener("submit", function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+            
+            // Typecast event target to HTMLFormElement
+            const form = event.target as HTMLFormElement;
+            
+            // Check if the form is valid
+            if (form.checkValidity()) {
+                // If the form is valid, redirect to the new page
+                window.location.href = "/final-project-1/login";
+            } else {
+                // If the form is not valid, show validation errors
+                form.reportValidity();
+            }
+        });
+    </script>
+
+
 </Layout>
