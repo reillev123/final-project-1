@@ -13,7 +13,7 @@ import Layout from "../layouts/Layouts.astro";
             get in touch with us.
         </p>
         <!-- Adding Form with input boxes and a send message button-->
-        <form class="mt-4" action="response" method="post">
+        <form class="mt-4" id="contactForm">
             <div class="form">
                 <!-- Form group for name input -->
                 <div class="form-group">
@@ -59,4 +59,22 @@ import Layout from "../layouts/Layouts.astro";
             </div>
         </form>
     </div>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+            
+            // Typecast event target to HTMLFormElement
+            const form = event.target as HTMLFormElement;
+            
+            // Check if the form is valid
+            if (form.checkValidity()) {
+                // If the form is valid, redirect to the new page
+                window.location.href = "/final-project-1/response";
+            } else {
+                // If the form is not valid, show validation errors
+                form.reportValidity();
+            }
+        });
+    </script>
 </Layout>
