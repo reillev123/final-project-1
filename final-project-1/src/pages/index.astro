@@ -1,62 +1,117 @@
 ---
-import Layout from "../layouts/Layouts.astro";
+import Layouts from "../layouts/Layouts.astro"
 
 ---
-<Layout>
-    <title>Home</title>
-    <link rel="shortcut icon" type="image/jpg" href="/final-project-1/images/favicon.jpg">
-    <!-- Main container -->
+<Layouts title="Home">
+  <body>
+    <div class="container">
+        <meta class="scroll" name="viewport" content="width=device-width, initial-scale=1">
+        <img src="/final-project-1/images/BakeMyDay.png" alt="BakeMyDay" class="img-fluid rounded custom-img-size"/>
 
-    <div class="container text-center mt-5">
-        <meta  class="scroll" name="viewport" content="width=device-width, initial-scale=1">
-        <img
-        src="/final-project-1/images/BakeMyDay.png"
-        alt="BakeMyDay"
-        class="img-fluid rounded custom-img-size"
-    />
         <div class="row mt-4">
-            <!-- Column for Fresh Bread section -->
             <div class="col-md-4">
                 <h3>Fresh Bread</h3>
                 <p>Our favourite bread recipes</p>
+                <div id="bread-recipes"></div>
             </div>
-            <!-- Column for Delicious Cakes section -->
             <div class="col-md-4">
                 <h3>Delicious Cakes</h3>
-                <p>
-                    Perfect for every occasion, our cake recipes are a treat for
-                    everyone.
-                </p>
+                <p>Our favourite cake recipes.</p>
+                <div id="cake-recipes"></div>
             </div>
-            <!-- Column for Pastries section -->
             <div class="col-md-4">
                 <h3>Pastries</h3>
-                <p>
-                    From croissants to danishes, we have a variety of pastries
-                    recipes.
-                </p>
+                <p>Our favourite pastries recipes.</p>
+                <div id="pastry-recipes"></div>
             </div>
         </div>
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"  data-bs-interval="3000">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/final-project-1/images/donuts.png" class="home" alt="logo">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/final-project-1/images/breads.png" class="home" alt="donuts">
-                  </div>
-              <div class="carousel-item">
-                <img src="/final-project-1/images/pastry.png" class="home" alt="donuts">
-              </div>
-              <div class="carousel-item">
-                <img src="/final-project-1/images/choccake.png" class="home" alt="cake">
-              </div>
-              <div class="carousel-item">
-                <img src="/final-project-1/images/cookies.png" class="home" alt="cookies">
-              </div>
-              <div class="carousel-item">
-                <img src="/final-project-1/images/brownie.png" class="home" alt="brownies">
-              </div>
-          </div>
+
+        <div id="carouselAutoplaying" class="carousel slide" data-bs-ride="carousel"  data-bs-interval="3000">
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <img src="/final-project-1/images/donuts.png" class="home" alt="logo">
+                </div>
+                <div class="carousel-item">
+                  <img src="/final-project-1/images/breads.png" class="home" alt="donuts">
+                </div>
+            <div class="carousel-item">
+              <img src="/final-project-1/images/pastry.png" class="home" alt="donuts">
+            </div>
+            <div class="carousel-item">
+              <img src="/final-project-1/images/choccake.png" class="home" alt="cake">
+            </div>
+            <div class="carousel-item">
+              <img src="/final-project-1/images/cookies.png" class="home" alt="cookies">
+            </div>
+            <div class="carousel-item">
+              <img src="/final-project-1/images/brownie.png" class="home" alt="brownies">
+            </div>
+        </div>
     </div>
-</Layout>
+</body>
+<script>
+  async function fetchRecipes(queryParams) {
+    const baseURL = "https://api.edamam.com/api/recipes/v2";
+    const appId = "d7193a6c";
+    const appKey = "c9b8ee8a1b8166ef57bc491438a36768";
+    
+    const queries = queryParams.query.map(q => `"${q}"`).join(', ');
+    const fullURL = `${baseURL}?type=public&beta=true&q=${encodeURIComponent(queries)}&app_id=${appId}&app_key=${appKey}&dishType=${queryParams.dishType}`;
+    
+    try {
+        const response = await fetch(fullURL);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        return data.hits;
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        return [];
+    }
+}
+
+function renderRecipe(recipe, containerId) {
+    const container = document.getElementById(containerId);
+    const recipeCard = document.createElement('div');
+    recipeCard.className = 'card';
+    recipeCard.innerHTML = `
+        <img src="${recipe.image}" alt="${recipe.label}">
+        <h5 class="card-title">${recipe.label}</h5>
+        <a href="${recipe.url}" target="_blank" class="btn">View Recipe</a>
+    `;
+    container.appendChild(recipeCard);
+}
+
+async function loadRecipes() {
+    const recipes = await fetchRecipes({ query: ["pastries", "cakes", "bread"], dishType: "Desserts" });
+    
+    if (recipes.length > 0) {
+        const breadRecipes = recipes.filter(recipe => recipe.recipe.label.toLowerCase().includes('bread'));
+        const cakeRecipes = recipes.filter(recipe => recipe.recipe.label.toLowerCase().includes('cake'));
+        const pastryRecipes = recipes.filter(recipe => recipe.recipe.label.toLowerCase().includes('pastry'));
+
+        if (breadRecipes.length > 0) {
+            const randomBreadRecipe = breadRecipes[Math.floor(Math.random() * breadRecipes.length)].recipe;
+            renderRecipe(randomBreadRecipe, 'bread-recipes');
+        }
+
+        if (cakeRecipes.length > 0) {
+            const randomCakeRecipe = cakeRecipes[Math.floor(Math.random() * cakeRecipes.length)].recipe;
+            renderRecipe(randomCakeRecipe, 'cake-recipes');
+        }
+
+        if (pastryRecipes.length > 0) {
+            const randomPastryRecipe = pastryRecipes[Math.floor(Math.random() * pastryRecipes.length)].recipe;
+            renderRecipe(randomPastryRecipe, 'pastry-recipes');
+        }
+    } else {
+        console.log('No recipes found');
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    loadRecipes();
+});
+</script>
+</Layouts>

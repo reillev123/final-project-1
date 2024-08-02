@@ -200,7 +200,7 @@ padding-top: 2%
 
 /* Custom size for images, centered with block display and automatic margins */
 .custom-img-size {
-    width: 280px; 
+    width: 380px; 
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -214,10 +214,23 @@ padding-top: 2%
 
 /* Styles the card element with rounded corners and box shadow */
 .card {
-    border-radius: 10px;
-    padding: 5%;
-    width: 400px;
-    padding-top: 5%;
+    border: 1px solid pink;;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+    height: 400px; /* Set a fixed height for all cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 200px; /* Set a smaller max-height for images */
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover; /* Ensure the image covers the area without distortion */
 }
 
 /* Styles for the signup text */
@@ -321,10 +334,12 @@ a.nav-link-1 {
 }
 
 .carousel{
-    width:90%;
+    width:100%;
     max-height: 400px !important;
-    padding-bottom: 8%;
-    padding-left: 9%;
+    padding-bottom: 5%;
+    display: flex;
+    padding-left: 20%;
+    justify-content: center;
 
 }
 
@@ -332,4 +347,11 @@ a.nav-link-1 {
     width:70%;
     max-height: 360px !important;
     padding-left:5%;
+}
+
+.about{
+    width:70%;
+    max-height: 360px !important;
+    padding-right:17%;
+
 }
