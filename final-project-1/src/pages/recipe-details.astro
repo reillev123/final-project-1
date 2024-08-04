@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layouts.astro';
+import { onMount } from 'solid-js';
+
+let recipe = null;
+let error = null;
+
+const fetchRecipeDetails = async (uri) => {
+    try {
+        const response = await fetch(`https://api.edamam.com/api/recipes/v2/${encodeURIComponent(uri)}?type=public&app_id=d7193a6c&app_key=c9b8ee8a1b8166ef57bc491438a36768`);
+        const data = await response.json();
+        recipe = data.recipe;
+    } catch (err) {
+        error = 'Failed to fetch recipe details.';
+    }
+};
+
+onMount(async () => {
+    const params = new URLSearchParams(window.location.search);
+    const uri = params.get('uri');
+    if (uri) {
+        await fetchRecipeDetails(uri);
+    } else {
+        error = 'No recipe URI provided.';
+    }
+});
+---
+
+<Layout>
+    <title>Recipe Details</title>
+    <div class="container mt-5">
+        {error ? (
+            <div class="alert alert-danger">{error}</div>
+        ) : (
+            recipe && (
+                <div>
+                    <h2>{recipe.label}</h2>
+                    <img src={recipe.image} alt={recipe.label} class="img-fluid mb-4" />
+                    <h4>Ingredients</h4>
+                    <ul>
+                        {recipe.ingredientLines.map((ingredient) => (
+                            <li>{ingredient}</li>
+                        ))}
+                    </ul>
+                    <h4>Instructions</h4>
+                    <ol>
+                        {recipe.instructions.map((instruction) => (
+                            <li>{instruction}</li>
+                        ))}
+                    </ol>
+                </div>
+            )
+        )}
+    </div>
+</Layout>

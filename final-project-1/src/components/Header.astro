@@ -1,5 +1,8 @@
 ---
+// Header.astro
+import { onMount } from 'solid-js';
 ---
+
 <!-- Creating header at top of site with site name and links to various pages on the site -->
 <header class="header text-white p-3">
     <div class="container">
@@ -20,10 +23,10 @@
                         <div class="dropdown">
                             <a class="nav-link text-white" href="/final-project-1/recipes">Recipes</a>
                             <div class="dropdown-content">
-                            <a href="/final-project-1/dairy-free">Dairy Free</a>
-                            <a href="/final-project-1/gluten-free">Gluten Free</a>
-                            <a href="/final-project-1/kid-friendly">Kid-Friendly</a>
-                            <a href="/final-project-1/vegan">Vegan</a>
+                                <a href="/final-project-1/dairy-free">Dairy Free</a>
+                                <a href="/final-project-1/gluten-free">Gluten Free</a>
+                                <a href="/final-project-1/kid-friendly">Kid-Friendly</a>
+                                <a href="/final-project-1/vegan">Vegan</a>
                             </div>
                         </div>
                     </li>
@@ -50,8 +53,8 @@
                     </li>
                     <!-- Search form -->
                     <li class="nav-item">
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="d-flex" role="search" id="search-form">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
                             <button class="btn" type="submit">Search</button>
                         </form>
                     </li>
@@ -67,7 +70,6 @@
     </div>
 </header>
 
-<!-- JavaScript for handling the hamburger menu toggle -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Get the hamburger menu and navigation elements by their IDs
