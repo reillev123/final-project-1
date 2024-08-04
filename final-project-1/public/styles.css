@@ -355,3 +355,14 @@ a.nav-link-1 {
     padding-right:17%;
 
 }
+
+.spinner-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.spinner-border {
+    color: #ff66b2;
+}
