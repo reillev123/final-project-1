@@ -10,22 +10,58 @@ import Layouts from "../layouts/Layouts.astro"
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const recipes = JSON.parse(localStorage.getItem('searchResults'));
-            const container = document.getElementById('recipes-container');
-            recipes.forEach(recipe => {
-                const recipeElement = document.createElement('div');
-                recipeElement.className = 'col-md-4';
-                recipeElement.innerHTML = `
-                    <div class="card mb-4">
-                        <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
-                        <div class="card-body">
-                            <h5 class="card-title">${recipe.recipe.label}</h5>
-                            <a href="${recipe.recipe.url}" class="btn btn-primary" target="_blank">View Recipe</a>
+            function renderRecipes(recipes) {
+                const container = document.getElementById('recipes-container');
+                container.innerHTML = ''; // Clear previous results
+                recipes.forEach((recipe: { recipe: { image: string, label: string, url: string } }) => {
+                    const recipeElement = document.createElement('div');
+                    recipeElement.className = 'col-md-4';
+                    recipeElement.innerHTML = `
+                        <div class="card mb-4">
+                            <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
+                            <div class="card-body">
+                                <h5 class="card-title">${recipe.recipe.label}</h5>
+                                <a href="${recipe.recipe.url}" class="btn btn-primary" target="_blank">View Recipe</a>
+                            </div>
                         </div>
-                    </div>
-                `;
-                container.appendChild(recipeElement);
-            });
+                    `;
+                    container.appendChild(recipeElement);
+                });
+            }
+
+            function fetchAndRenderRecipes(query) {
+                const fullURL = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=${encodeURIComponent(query)}&app_id=d7193a6c&app_key=c9b8ee8a1b8166ef57bc491438a36768&dishType=Desserts`;
+
+                fetch(fullURL)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const recipes = data.hits;
+                        renderRecipes(recipes);
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+
+            const searchForm = document.getElementById('search-form');
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const query = (document.getElementById('search-input') as HTMLInputElement).value;
+                    fetchAndRenderRecipes(query);
+                });
+            }
+
+            // Initial render from localStorage if available
+            const storedRecipes = localStorage.getItem('searchResults');
+            if (storedRecipes) {
+                renderRecipes(JSON.parse(storedRecipes));
+            }
         });
     </script>
 </body>
