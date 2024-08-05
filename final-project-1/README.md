@@ -52,23 +52,22 @@ BakeMyDay/
 │
 ├── pages/
 |   ├── favourites.astro
-│   ├── dairy-free.astro
-│   ├── gluten-free.astro
-│   ├── kid-friendly.astro
+│   ├── bread.astro
+│   ├── cakes.astro
+│   ├── cookies.astro
+│   ├── recipes-details.astro
 │   ├── recipes.astro
-│   ├── vegan.astro
+│   ├── pastries.astro
 │   ├── about.astro
 │   ├── contact.astro
 │   ├── index.astro
 │   ├── login.astro
 │   ├── response.astro
+│   ├── search-results.astro
 │   ├── signup.astro
 │   ├── signupconfirmation.astro
 │   ├── sitemap.astro
 │   └── terms.astro
-│
-├── services/
-│   ├── api.js
 │
 └── README.md
 

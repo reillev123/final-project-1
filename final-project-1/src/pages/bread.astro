@@ -9,4 +9,75 @@ import Layout from '../layouts/Layouts.astro';
         <h2>Our Favorite Bread Recipes</h2>
         <p>Discover our collection of delightful bakery recipes that you can make at home.</p>
     </div>
+    <div class="spinner-wrapper">
+        <div id="spinner" class="spinner-border" role="status" style="display: none;">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div id="recipes-container" class="row"></div> <!-- Add Bootstrap row class -->
+    </div>
+    
+    <script>
+        async function fetchRecipes() {
+            const fullURL = "https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=%22bread%22&app_id=d7193a6c&app_key=c9b8ee8a1b8166ef57bc491438a36768&dishType=Desserts";
+            
+            try {
+                const response = await fetch(fullURL);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const data = await response.json();
+                return data.hits;
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+                return [];
+            }
+        }
+    
+        async function loadRecipes() {
+            const spinner = document.getElementById('spinner');
+            const recipesContainer = document.getElementById('recipes-container');
+            
+            // Show spinner and hide recipes container
+            spinner.style.display = 'block';
+            recipesContainer.style.display = 'none';
+    
+            try {
+                const recipes = await fetchRecipes();
+                renderRecipes(recipes.slice(0, 9)); // Get the first 9 recipes
+            } catch (error) {
+                console.error('Error fetching recipes:', error);
+            } finally {
+                // Hide spinner and show recipes container
+                spinner.style.display = 'none';
+                recipesContainer.style.display = 'flex';
+            }
+        }
+    
+        function renderRecipes(recipes) {
+            const recipesContainer = document.getElementById('recipes-container');
+            recipesContainer.innerHTML = ''; // Clear previous recipes
+    
+            recipes.forEach(recipe => {
+                const recipeElement = document.createElement('div');
+                recipeElement.className = 'col-md-4 mb-4'; // Bootstrap column classes
+                recipeElement.innerHTML = `
+                    <div class="card">
+                        <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
+                        <div class="card-body">
+                            <h5 class="card-title">${recipe.recipe.label}</h5>
+                            <a href="/final-project-1/recipe-details?uri=${encodeURIComponent(recipe.recipe.uri)}" class="btn btn-primary mt-2">View Recipe</a>
+                        </div>
+                    </div>
+                `;
+                recipesContainer.appendChild(recipeElement);
+            });
+        }
+    
+        // Initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRecipes();
+        });
+    </script>
+</script>
 </Layout>
