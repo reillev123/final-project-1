@@ -3,41 +3,52 @@ import Layout from '../layouts/Layouts.astro';
 ---
 <!-- Creating a Cookie recipes page -->
 <Layout>
+    <!-- Setting the page title -->
     <title>Cookie Recipes</title>
     <div class="container text-center mt-5">
+        <!-- Page header -->
         <h2>Our Favorite Cookie Recipes</h2>
+        <!-- Page description -->
         <p>Discover our collection of delightful bakery recipes that you can make at home.</p>
     </div>
     <div class="spinner-wrapper">
+        <!-- Spinner element for indicating loading state -->
         <div id="spinner" class="spinner-border" role="status" style="display: none;">
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-    <div id="recipes-container" class="row"></div> <!-- Add Bootstrap row class -->
+    <div id="recipes-container" class="row"></div> <!-- Container for recipes, with Bootstrap row class -->
 
     <script>
+        // Function to fetch cookie recipes from the API
         async function fetchRecipes() {
+            // API URL with query parameters
             const fullURL = "https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=%22cookie%22&app_id=d7193a6c&app_key=c9b8ee8a1b8166ef57bc491438a36768&dishType=Desserts";
             
             try {
+                // Fetch data from the API
                 const response = await fetch(fullURL);
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
+                // Parse the JSON response
                 const data = await response.json();
-                return data.hits;
+                return data.hits; // Return the array of recipes
             } catch (error) {
+                // Log any errors
                 console.error('There was a problem with the fetch operation:', error);
-                return [];
+                return []; // Return an empty array if there's an error
             }
         }
 
         // Call fetchRecipes and render the recipes
         fetchRecipes().then(recipes => {
+            // Get the container element where recipes will be displayed
             const container = document.getElementById('recipes-container');
+            // Loop through each recipe and create HTML elements
             recipes.forEach(recipe => {
                 const recipeElement = document.createElement('div');
-                recipeElement.className = 'col-md-4';
+                recipeElement.className = 'col-md-4'; // Bootstrap column class
                 recipeElement.innerHTML = `
                     <div class="card mb-4">
                         <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
@@ -47,6 +58,7 @@ import Layout from '../layouts/Layouts.astro';
                         </div>
                     </div>
                 `;
+                // Add the recipe element to the container
                 container.appendChild(recipeElement);
             });
         });

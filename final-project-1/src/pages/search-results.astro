@@ -1,34 +1,43 @@
 ---
-import Layouts from "../layouts/Layouts.astro"
+import Layouts from "../layouts/Layouts.astro";
 ---
+
 <Layouts>
 <body>
+    <!-- Main container with centered text and margin-top -->
     <div class="container text-center mt-5">
         <h2>Search Results</h2>
-        <div id="recipes-container" class="row"></div> <!-- Add Bootstrap row class -->
+        <!-- Container to display recipes, using Bootstrap row class -->
+        <div id="recipes-container" class="row"></div>
     </div>
 
     <script>
+        // Wait until the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Function to render recipes in the container
             function renderRecipes(recipes) {
                 const container = document.getElementById('recipes-container');
                 container.innerHTML = ''; // Clear previous results
-                recipes.forEach((recipe: { recipe: { image: string, label: string, url: string } }) => {
+                
+                // Iterate over each recipe and create a card element for it
+                recipes.forEach((recipe) => {
                     const recipeElement = document.createElement('div');
-                    recipeElement.className = 'col-md-4';
+                    recipeElement.className = 'col-md-4'; // Bootstrap column classes
                     recipeElement.innerHTML = `
                         <div class="card mb-4">
                             <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
                             <div class="card-body">
                                 <h5 class="card-title">${recipe.recipe.label}</h5>
-                                <a href="${recipe.recipe.url}" class="btn btn-primary" target="_blank">View Recipe</a>
+                                <a href="/final-project-1/recipe-details" class="btn btn-primary" target="_blank">View Recipe</a>
                             </div>
                         </div>
                     `;
+                    // Append the recipe element to the container
                     container.appendChild(recipeElement);
                 });
             }
 
+            // Function to fetch recipes from the API and render them
             function fetchAndRenderRecipes(query) {
                 const fullURL = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=${encodeURIComponent(query)}&app_id=d7193a6c&app_key=c9b8ee8a1b8166ef57bc491438a36768&dishType=Desserts`;
 
@@ -41,26 +50,29 @@ import Layouts from "../layouts/Layouts.astro"
                     })
                     .then(data => {
                         const recipes = data.hits;
-                        renderRecipes(recipes);
+                        renderRecipes(recipes); // Render the fetched recipes
                     })
                     .catch(error => {
+                        // Log any errors to the console
                         console.error('There was a problem with the fetch operation:', error);
                     });
             }
 
+            // Get the search form element
             const searchForm = document.getElementById('search-form');
             if (searchForm) {
+                // Add event listener to handle form submission
                 searchForm.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    const query = (document.getElementById('search-input') as HTMLInputElement).value;
-                    fetchAndRenderRecipes(query);
+                    event.preventDefault(); // Prevent the default form submission
+                    const query = (document.getElementById('search-input') as HTMLInputElement).value; // Get the search query
+                    fetchAndRenderRecipes(query); // Fetch and render recipes based on the query
                 });
             }
 
             // Initial render from localStorage if available
             const storedRecipes = localStorage.getItem('searchResults');
             if (storedRecipes) {
-                renderRecipes(JSON.parse(storedRecipes));
+                renderRecipes(JSON.parse(storedRecipes)); // Render the stored recipes
             }
         });
     </script>
