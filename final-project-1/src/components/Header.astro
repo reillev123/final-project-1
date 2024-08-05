@@ -82,4 +82,27 @@ import { onMount } from 'solid-js';
             nav.classList.toggle('nav-active');
         });
     });
+
+    document.getElementById('search-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const query = (document.getElementById('search-input') as HTMLInputElement).value;
+            const fullURL = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=${encodeURIComponent(query)}&app_id=d7193a6c&app_key=c9b8ee8a1b8166ef57bc491438a36768&dishType=Desserts`;
+
+            try {
+                const response = await fetch(fullURL);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const data = await response.json();
+                const recipes = data.hits;
+
+                // Store the recipes in localStorage to pass to the search-results page
+                localStorage.setItem('searchResults', JSON.stringify(recipes));
+
+                // Redirect to the search-results page
+                window.location.href = 'search-results.html';
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        });
 </script>

@@ -1,0 +1,32 @@
+---
+import Layouts from "../layouts/Layouts.astro"
+---
+<Layouts>
+<body>
+    <div class="container text-center mt-5">
+        <h2>Search Results</h2>
+        <div id="recipes-container" class="row"></div> <!-- Add Bootstrap row class -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const recipes = JSON.parse(localStorage.getItem('searchResults'));
+            const container = document.getElementById('recipes-container');
+            recipes.forEach(recipe => {
+                const recipeElement = document.createElement('div');
+                recipeElement.className = 'col-md-4';
+                recipeElement.innerHTML = `
+                    <div class="card mb-4">
+                        <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
+                        <div class="card-body">
+                            <h5 class="card-title">${recipe.recipe.label}</h5>
+                            <a href="${recipe.recipe.url}" class="btn btn-primary" target="_blank">View Recipe</a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(recipeElement);
+            });
+        });
+    </script>
+</body>
+</Layouts>
