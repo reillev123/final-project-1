@@ -10,14 +10,15 @@ import Layout from '../layouts/Layouts.astro';
         <p>Discover our collection of delightful bakery recipes that you can make at home.</p>
     </div>
     <div class="spinner-wrapper">
+        <!-- Spinner element for indicating loading state -->
         <div id="spinner" class="spinner-border" role="status" style="display: none;">
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-    <div id="recipes-container" class="row"></div> <!-- Add Bootstrap row class -->
-    </div>
+    <div id="recipes-container" class="row"></div> <!-- Container for recipes, with Bootstrap row class -->
     
     <script>
+        // Function to fetch recipes from the API
         async function fetchRecipes() {
             const fullURL = "https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=%22bread%22&app_id=d7193a6c&app_key=c9b8ee8a1b8166ef57bc491438a36768&dishType=Desserts";
             
@@ -27,33 +28,35 @@ import Layout from '../layouts/Layouts.astro';
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
                 const data = await response.json();
-                return data.hits;
+                return data.hits; // Return the array of recipes
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
-                return [];
+                return []; // Return an empty array if there's an error
             }
         }
     
+        // Function to load recipes and update the UI
         async function loadRecipes() {
             const spinner = document.getElementById('spinner');
             const recipesContainer = document.getElementById('recipes-container');
             
-            // Show spinner and hide recipes container
+            // Show spinner and hide recipes container while loading
             spinner.style.display = 'block';
             recipesContainer.style.display = 'none';
     
             try {
                 const recipes = await fetchRecipes();
-                renderRecipes(recipes.slice(0, 9)); // Get the first 9 recipes
+                renderRecipes(recipes.slice(0, 9)); // Render the first 9 recipes
             } catch (error) {
                 console.error('Error fetching recipes:', error);
             } finally {
-                // Hide spinner and show recipes container
+                // Hide spinner and show recipes container after loading
                 spinner.style.display = 'none';
                 recipesContainer.style.display = 'flex';
             }
         }
     
+        // Function to render recipes in the container
         function renderRecipes(recipes) {
             const recipesContainer = document.getElementById('recipes-container');
             recipesContainer.innerHTML = ''; // Clear previous recipes
@@ -70,14 +73,13 @@ import Layout from '../layouts/Layouts.astro';
                         </div>
                     </div>
                 `;
-                recipesContainer.appendChild(recipeElement);
+                recipesContainer.appendChild(recipeElement); // Add the recipe to the container
             });
         }
     
-        // Initial load
+        // Initial load of recipes when the DOM content is loaded
         document.addEventListener('DOMContentLoaded', () => {
             loadRecipes();
         });
     </script>
-</script>
 </Layout>
