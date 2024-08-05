@@ -1,6 +1,4 @@
 ---
-// Header.astro
-import { onMount } from 'solid-js';
 ---
 
 <!-- Creating header at top of site with site name and links to various pages on the site -->
@@ -100,7 +98,7 @@ import { onMount } from 'solid-js';
                 localStorage.setItem('searchResults', JSON.stringify(recipes));
 
                 // Redirect to the search-results page
-                window.location.href = 'search-results.html';
+                window.location.href = '../final-project-1/search-results';
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }
