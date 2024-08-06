@@ -42,28 +42,96 @@ import Layout from '../layouts/Layouts.astro';
             }
         }
 
-        // Call fetchRecipes and render the recipes
-        fetchRecipes().then(recipes => {
-            // Get the container element where recipes will be displayed
-            const container = document.getElementById('recipes-container');
-            // Loop through each recipe and create HTML elements to display them
-            recipes.forEach(recipe => {
-                // Create a div element for each recipe with Bootstrap column class
-                const recipeElement = document.createElement('div');
-                recipeElement.className = 'col-md-4';
-                // Set the inner HTML of the recipe element with card layout
-                recipeElement.innerHTML = `
-                    <div class="card mb-4">
-                        <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
-                        <div class="card-body">
-                            <h5 class="card-title">${recipe.recipe.label}</h5>
-                            <a href="${recipe.recipe.url}" class="btn btn-primary" target="_blank">View Recipe</a>
-                        </div>
-                    </div>
-                `;
-                // Append the recipe element to the container
-                container.appendChild(recipeElement);
-            });
+         // Function to load recipes and update the UI
+         async function loadRecipes() {
+            const spinner = document.getElementById('spinner');
+            const recipesContainer = document.getElementById('recipes-container');
+            
+            // Show spinner and hide recipes container while loading
+            spinner.style.display = 'block';
+            recipesContainer.style.display = 'none';
+    
+            try {
+                // Fetch recipes and render them
+                const recipes = await fetchRecipes();
+                renderRecipes(recipes.slice(0, 9)); // Render the first 9 recipes
+            } catch (error) {
+                // Log any errors
+                console.error('Error fetching recipes:', error);
+            } finally {
+                // Hide spinner and show recipes container after loading
+                spinner.style.display = 'none';
+                recipesContainer.style.display = 'flex';
+            }
+        }
+
+         
+         // Function to render a list of recipes
+    function renderRecipes(recipes) {
+    // Get the container element where recipes will be displayed
+    const recipesContainer = document.getElementById("recipes-container");
+    // Clear any previous recipes
+    recipesContainer.innerHTML = "";
+
+    // Iterate over each recipe in the recipes array
+    recipes.forEach((recipe) => {
+        // Create a new div element for each recipe
+        const recipeElement = document.createElement("div");
+        recipeElement.className = "col-md-4 mb-4"; // Assign Bootstrap column classes for styling
+        recipeElement.innerHTML = `
+            <div class="card">
+                <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
+                <div class="card-body">
+                    <h5 class="card-title">${recipe.recipe.label}</h5>
+                    <a href="/final-project-1/recipe-details?uri=${encodeURIComponent(recipe.recipe.uri)}" class="btn btn-primary mt-2">View Recipe</a>
+                    <button class="btn btn-outline-primary mt-2 favourite-btn">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        // Append the recipe element to the container
+        recipesContainer.appendChild(recipeElement);
+    });
+
+    // Add click event listeners to all favourite buttons
+    document.querySelectorAll('.favourite-btn').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button click behavior
+
+            // Toggle heart icon between filled and outlined states
+            const icon = this.querySelector('i');
+            const isFilled = icon.classList.contains('fa-solid');
+            icon.classList.toggle('fa-regular', isFilled);
+            icon.classList.toggle('fa-solid', !isFilled);
+
+            // Get the URI of the recipe associated with the button
+            const recipeUri = this.previousElementSibling.href.split('=')[1];
+            // Find the corresponding recipe object
+            const recipe = recipes.find((r) => encodeURIComponent(r.recipe.uri) === recipeUri);
+
+            // Retrieve favourites from local storage or initialize an empty array
+            let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
+
+            if (isFilled) {
+                // If the heart was filled, add the recipe from favourites
+                favourites = favourites.filter((fav) => fav.uri !== recipe.recipe.uri);
+            } else {
+                // If the heart was not filled, remove the recipe to favourites
+                favourites.push(recipe.recipe);
+            }
+
+            // Update the favourites in local storage
+            localStorage.setItem('favourites', JSON.stringify(favourites));
         });
-    </script>
+    });
+}
+
+// Initial load: add event listener to run loadRecipes when the page is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+    loadRecipes();
+});
+
+  
+</script>
 </Layout>

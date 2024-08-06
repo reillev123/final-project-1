@@ -56,30 +56,72 @@ import Layout from '../layouts/Layouts.astro';
             }
         }
     
-        // Function to render recipes in the container
-        function renderRecipes(recipes) {
-            const recipesContainer = document.getElementById('recipes-container');
-            recipesContainer.innerHTML = ''; // Clear previous recipes
-    
-            recipes.forEach(recipe => {
-                const recipeElement = document.createElement('div');
-                recipeElement.className = 'col-md-4 mb-4'; // Bootstrap column classes
-                recipeElement.innerHTML = `
-                    <div class="card">
-                        <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
-                        <div class="card-body">
-                            <h5 class="card-title">${recipe.recipe.label}</h5>
-                            <a href="/final-project-1/recipe-details?uri=${encodeURIComponent(recipe.recipe.uri)}" class="btn btn-primary mt-2">View Recipe</a>
-                        </div>
-                    </div>
-                `;
-                recipesContainer.appendChild(recipeElement); // Add the recipe to the container
-            });
-        }
-    
-        // Initial load of recipes when the DOM content is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            loadRecipes();
+          
+       // Function to render a list of recipes
+    function renderRecipes(recipes) {
+    // Get the container element where recipes will be displayed
+    const recipesContainer = document.getElementById("recipes-container");
+    // Clear any previous recipes
+    recipesContainer.innerHTML = "";
+
+    // Iterate over each recipe in the recipes array
+    recipes.forEach((recipe) => {
+        // Create a new div element for each recipe
+        const recipeElement = document.createElement("div");
+        recipeElement.className = "col-md-4 mb-4"; // Assign Bootstrap column classes for styling
+        recipeElement.innerHTML = `
+            <div class="card">
+                <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
+                <div class="card-body">
+                    <h5 class="card-title">${recipe.recipe.label}</h5>
+                    <a href="/final-project-1/recipe-details?uri=${encodeURIComponent(recipe.recipe.uri)}" class="btn btn-primary mt-2">View Recipe</a>
+                    <button class="btn btn-outline-primary mt-2 favourite-btn">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        // Append the recipe element to the container
+        recipesContainer.appendChild(recipeElement);
+    });
+
+    // Add click event listeners to all favourite buttons
+    document.querySelectorAll('.favourite-btn').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default button click behavior
+
+            // Toggle heart icon between filled and outlined states
+            const icon = this.querySelector('i');
+            const isFilled = icon.classList.contains('fa-solid');
+            icon.classList.toggle('fa-regular', isFilled);
+            icon.classList.toggle('fa-solid', !isFilled);
+
+            // Get the URI of the recipe associated with the button
+            const recipeUri = this.previousElementSibling.href.split('=')[1];
+            // Find the corresponding recipe object
+            const recipe = recipes.find((r) => encodeURIComponent(r.recipe.uri) === recipeUri);
+
+            // Retrieve favourites from local storage or initialize an empty array
+            let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
+
+            if (isFilled) {
+                // If the heart was filled, add the recipe from favourites
+                favourites = favourites.filter((fav) => fav.uri !== recipe.recipe.uri);
+            } else {
+                // If the heart was not filled, remove the recipe to favourites
+                favourites.push(recipe.recipe);
+            }
+
+            // Update the favourites in local storage
+            localStorage.setItem('favourites', JSON.stringify(favourites));
         });
-    </script>
+    });
+}
+
+// Initial load: add event listener to run loadRecipes when the page is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+    loadRecipes();
+});
+
+</script>
 </Layout>
