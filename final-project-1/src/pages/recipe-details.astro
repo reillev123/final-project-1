@@ -1,39 +1,47 @@
 ---
-import Layout from '../layouts/Layouts.astro';
+import Layouts from "../layouts/Layouts.astro"
 ---
-<Layout>
+<Layouts>
+    <!-- Page title -->
     <title>Recipe Details</title>
-    <div class="container text-center mt-5">
-        <h2>Recipe Details</h2>
-        <div id="recipe-details-container"></div>
+    <!-- Container for recipe details -->
+    <div class="recipe-details">
+        <!-- Image element for the recipe -->
+        <img id="recipe-image" class="recipe-image" alt="Recipe Image">
+        <!-- Container for recipe information -->
+        <div class="recipe-info">
+            <!-- Recipe title -->
+            <h1 id="recipe-title"></h1>
+            <!-- Recipe instructions -->
+            <p id="recipe-instructions"></p>
+            <!-- Ingredients header -->
+            <h2>Ingredients</h2>
+            <!-- List to display ingredients -->
+            <ul id="ingredient-list" class="ingredient-list"></ul>
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', async function() {
-            const recipe = JSON.parse(localStorage.getItem('selectedRecipe'));
+        // Add an event listener to execute when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve the current recipe from localStorage
+            const recipe = JSON.parse(localStorage.getItem('currentRecipe'));
             if (recipe) {
-                const container = document.getElementById('recipe-details-container');
-                
-                try {
-                    const response = await fetch(recipe.url);
-                    const data = await response.json();
-                    const ingredientsList = data.ingredients.map((ingredient: string) => `<li>${ingredient}</li>`).join('');
-                    
-                    container.innerHTML = `
-                        <div class="card">
-                            <img src="${recipe.image}" alt="${recipe.label}">
-                            <h5 class="card-title">${recipe.label}</h5>
-                            <h6>Ingredients:</h6>
-                            <ul>${ingredientsList}</ul>
-                            <a href="${recipe.url}" target="_blank" class="btn">View Full Recipe</a>
-        
-                        </div>
-                    `;
-                } catch (error) {
-                    console.error('Error fetching recipe details:', error);
-                    container.innerHTML = '<p>Failed to load recipe details. Please try again later.</p>';
-                }
+                // Set the recipe title
+                document.getElementById('recipe-title').innerText = recipe.label;
+                // Set the recipe image
+                (document.getElementById('recipe-image') as HTMLImageElement).src = recipe.image;
+
+                // Get the ingredient list element
+                const ingredientList = document.getElementById('ingredient-list');
+                // Iterate over the ingredient lines and add them to the list
+                recipe.ingredientLines.forEach(ingredient => {
+                    // Create a new list item for each ingredient
+                    const listItem = document.createElement('li');
+                    listItem.innerText = ingredient; // Set the text of the list item
+                    ingredientList.appendChild(listItem); // Append the list item to the ingredient list
+                });
             }
         });
     </script>
-</Layout>
+</Layouts>

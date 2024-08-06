@@ -373,3 +373,23 @@ a.nav-link-1 {
 .favourite-btn i {
     color: white; 
 }
+
+.recipe-details {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.recipe-image {
+    max-width: 300px;
+    height: auto;
+}
+
+.recipe-info {
+    flex: 1;
+}
+
+.ingredient-list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
