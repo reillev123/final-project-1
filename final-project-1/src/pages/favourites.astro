@@ -1,10 +1,64 @@
 ---
-import Layout from '../layouts/Layouts.astro';
+import Layouts from "../layouts/Layouts.astro"
 ---
-<!-- Creating a Dairy-Free recipes page -->
-<Layout>
-    <title>Favourites</title>
+<Layouts>
+<body>
     <div class="container text-center mt-5">
-        <h2>My Favourite Recipes</h2>
+        <!-- Page title -->
+        <title>Favorites</title>
+        <!-- Header for the favorites page -->
+        <h2>My Favorite Recipes</h2>
+        <!-- Container for displaying favorite recipes -->
+        <div id="favorites-container" class="row"></div>
     </div>
-</Layout>
+
+    <script>
+        // Function to retrieve favorite recipes from localStorage
+        function getFavoriteRecipes() {
+            // Get the 'favourites' item from localStorage
+            const favorites = localStorage.getItem('favourites');
+            // If 'favourites' exists, parse and return it, otherwise return an empty array
+            return favorites ? JSON.parse(favorites) : [];
+        }
+
+        // Function to render favorite recipes on the page
+        function renderFavoriteRecipes() {
+            // Get the container where favorite recipes will be displayed
+            const favoritesContainer = document.getElementById("favorites-container");
+            // Retrieve the favorite recipes from localStorage
+            const favoriteRecipes = getFavoriteRecipes();
+
+            // Clear any previous content in the container
+            favoritesContainer.innerHTML = "";
+
+            // Check if there are any favorite recipes
+            if (favoriteRecipes.length === 0) {
+                // If no favorites, display a message
+                favoritesContainer.innerHTML = "<p>No favorite recipes found.</p>";
+                return;
+            }
+
+            // Iterate over each favorite recipe
+            favoriteRecipes.forEach((recipe) => {
+                // Create a new div element for each recipe
+                const recipeElement = document.createElement("div");
+                recipeElement.className = "col-md-4 mb-4"; // Assign Bootstrap column classes for styling
+                recipeElement.innerHTML = `
+                    <div class="card">
+                        <img src="${recipe.image}" class="card-img-top" alt="${recipe.label}">
+                        <div class="card-body">
+                            <h5 class="card-title">${recipe.label}</h5>
+                            <a href="/final-project-1/recipe-details?uri=${encodeURIComponent(recipe.uri)}" class="btn btn-primary mt-2">View Recipe</a>
+                        </div>
+                    </div>
+                `;
+                // Append the recipe element to the container
+                favoritesContainer.appendChild(recipeElement);
+            });
+        }
+
+        // Add event listener to run renderFavoriteRecipes when the page is fully loaded
+        document.addEventListener('DOMContentLoaded', renderFavoriteRecipes);
+    </script>
+</body>
+</Layouts>

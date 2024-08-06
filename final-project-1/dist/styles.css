@@ -219,7 +219,7 @@ padding-top: 2%
     padding: 16px;
     margin-bottom: 16px;
     text-align: center;
-    height: 400px; /* Set a fixed height for all cards */
+    height: 430px; /* Set a fixed height for all cards */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -333,36 +333,43 @@ a.nav-link-1 {
     z-index: 1000; /* Ensure button is above other elements */
 }
 
-.carousel{
-    width:100%;
-    max-height: 400px !important;
-    padding-bottom: 5%;
-    display: flex;
-    padding-left: 20%;
-    justify-content: center;
-
+/* Styles for the carousel container */
+.carousel {
+    width: 100%; /* Set the carousel to take the full width of its container */
+    max-height: 400px !important; /* Set a maximum height for the carousel */
+    padding-bottom: 5%; /* Add padding at the bottom */
+    display: flex; /* Use flexbox for layout */
+    padding-left: 20%; /* Add padding on the left side */
+    justify-content: center; /* Center the content horizontally */
 }
 
-.home{
-    width:70%;
-    max-height: 360px !important;
-    padding-left:5%;
+/* Styles for the home page carousel */
+.home {
+    width: 70%; 
+    max-height: 360px !important; 
+    padding-left: 5%; 
 }
 
-.about{
-    width:70%;
-    max-height: 360px !important;
-    padding-right:17%;
-
+/* Styles for the about page carousel  */
+.about {
+    width: 70%; 
+    max-height: 360px;
+    padding-right: 17%; 
 }
 
+/* Styles for the spinner wrapper */
 .spinner-wrapper {
-    display: flex;
-    justify-content: center;
+    display: flex; 
+    justify-content: center; 
     align-items: center;
-   
 }
 
+/* Styles for the spinner border */
 .spinner-border {
-    color: #ff66b2;
+    color: #ff66b2; 
+}
+
+/* Styles for the icon inside the favorite button */
+.favourite-btn i {
+    color: white; 
 }

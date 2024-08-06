@@ -5,5 +5,6 @@ import"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js";im
                             <h6>Ingredients:</h6>
                             <ul>${i}</ul>
                             <a href="${e.url}" target="_blank" class="btn">View Full Recipe</a>
+        
                         </div>
                     `}catch(a){console.error("Error fetching recipe details:",a),t.innerHTML="<p>Failed to load recipe details. Please try again later.</p>"}}});
