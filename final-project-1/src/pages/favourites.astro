@@ -48,12 +48,23 @@ import Layouts from "../layouts/Layouts.astro"
                         <img src="${recipe.image}" class="card-img-top" alt="${recipe.label}">
                         <div class="card-body">
                             <h5 class="card-title">${recipe.label}</h5>
-                            <a href="/final-project-1/recipe-details?uri=${encodeURIComponent(recipe.uri)}" class="btn btn-primary mt-2">View Recipe</a>
+                            <a href="/final-project-1/recipe-details?uri=${encodeURIComponent(recipe.uri)}" class="btn btn-primary mt-2 view-recipe-btn">View Recipe</a>
                         </div>
                     </div>
                 `;
                 // Append the recipe element to the container
                 favoritesContainer.appendChild(recipeElement);
+            });
+
+            // Add event listener for view recipe buttons
+            document.querySelectorAll('.view-recipe-btn').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const recipeUri = this.href.split('=')[1];
+                    const recipe = favoriteRecipes.find((r) => encodeURIComponent(r.uri) === recipeUri);
+                    localStorage.setItem('currentRecipe', JSON.stringify(recipe));
+                    window.location.href = this.href;
+                });
             });
         }
 
