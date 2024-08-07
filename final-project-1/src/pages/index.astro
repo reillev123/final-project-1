@@ -58,8 +58,8 @@ import Layouts from "../layouts/Layouts.astro"
     </div>
 </body>
 <script>
-  // Function to fetch recipes from the API
-  async function fetchRecipes(queryParams) {
+// Function to fetch recipes from the API
+async function fetchRecipes(queryParams) {
     const baseURL = "https://api.edamam.com/api/recipes/v2";
     const appId = "d7193a6c";
     const appKey = "c9b8ee8a1b8166ef57bc491438a36768";
@@ -78,14 +78,11 @@ import Layouts from "../layouts/Layouts.astro"
         const data = await response.json();
         return data.hits;
     } catch (error) {
-        // Handling errors
-        console.error('There was a problem with the fetch operation:', error);
         return [];
     }
 }
 
-  // Function to render a recipe card in the specified container
-function renderRecipe(recipe, containerId) {
+function renderRecipe(recipe, containerId, recipes) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -95,23 +92,29 @@ function renderRecipe(recipe, containerId) {
     recipeCard.innerHTML = `
         <img src="${recipe.image}" alt="${recipe.label}">
         <h5 class="card-title">${recipe.label}</h5>
-        <button class="btn view-recipe-btn">View Recipe</button>
+        <button class="btn view-recipe-btn" data-uri="${encodeURIComponent(recipe.uri)}">View Recipe</button>
+        
     `;
     container.appendChild(recipeCard);
 
-    // Adding click event listener to the view recipe button
-    const viewRecipeBtn = recipeCard.querySelector('.view-recipe-btn');
-    if (viewRecipeBtn) {
-        viewRecipeBtn.addEventListener('click', () => {
-            // Store the recipe details in localStorage
-            localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
-            // Redirect to the recipe-details page
+    // Add event listeners to all elements with the class 'view-recipe-btn'
+    document.querySelectorAll('.view-recipe-btn').forEach(button => {
+        // Add a click event listener to each 'view-recipe-btn'
+        button.addEventListener('click', function() {
+            // Get the URI of the recipe associated with the button
+            const recipeUri = this.getAttribute('data-uri');
+            // Find the corresponding recipe object in the recipes array
+            const foundRecipe = recipes.find(r => encodeURIComponent(r.recipe.uri) === recipeUri);
+
+            // Store the current recipe in localStorage
+            localStorage.setItem('currentRecipe', JSON.stringify(foundRecipe.recipe));
+
+            // Redirect to recipe-details page
             window.location.href = '/final-project-1/recipe-details';
         });
-    }
+    });
 }
-
-  // Function to load recipes and render them in their respective sections
+// Function to load recipes and render them in their respective sections
 async function loadRecipes() {
     const recipes = await fetchRecipes({ query: ["pastries", "cakes", "bread"], dishType: "Desserts" });
     
@@ -120,21 +123,21 @@ async function loadRecipes() {
         const breadRecipes = recipes.filter(recipe => recipe.recipe.label.toLowerCase().includes('bread'));
         if (breadRecipes.length > 0) {
             const randomBreadRecipe = breadRecipes[Math.floor(Math.random() * breadRecipes.length)].recipe;
-            renderRecipe(randomBreadRecipe, 'bread-recipes');
+            renderRecipe(randomBreadRecipe, 'bread-recipes', recipes);
         }
 
         // Filtering and rendering cake recipes
         const cakeRecipes = recipes.filter(recipe => recipe.recipe.label.toLowerCase().includes('cake'));
         if (cakeRecipes.length > 0) {
             const randomCakeRecipe = cakeRecipes[Math.floor(Math.random() * cakeRecipes.length)].recipe;
-            renderRecipe(randomCakeRecipe, 'cake-recipes');
+            renderRecipe(randomCakeRecipe, 'cake-recipes', recipes);
         }
 
         // Filtering and rendering pastry recipes
         const pastryRecipes = recipes.filter(recipe => recipe.recipe.label.toLowerCase().includes('pastry'));
         if (pastryRecipes.length > 0) {
             const randomPastryRecipe = pastryRecipes[Math.floor(Math.random() * pastryRecipes.length)].recipe;
-            renderRecipe(randomPastryRecipe, 'pastry-recipes');
+            renderRecipe(randomPastryRecipe, 'pastry-recipes', recipes);
         }
     } else {
         // Logging if no recipes are found
@@ -142,7 +145,7 @@ async function loadRecipes() {
     }
 }
 
-  // Adding event listener to load recipes when the DOM is fully loaded
+// Adding event listener to load recipes when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function() {
     loadRecipes();
 });

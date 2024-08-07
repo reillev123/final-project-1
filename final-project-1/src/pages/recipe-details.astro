@@ -25,17 +25,17 @@ import Layouts from "../layouts/Layouts.astro"
         // Add an event listener to execute when the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Retrieve the current recipe from localStorage
-            const recipe = JSON.parse(localStorage.getItem('currentRecipe'));
-            if (recipe) {
+            const recipes = JSON.parse(localStorage.getItem('currentRecipe'));
+            if (recipes) {
                 // Set the recipe title
-                document.getElementById('recipe-title').innerText = recipe.label;
+                document.getElementById('recipe-title').innerText = recipes.label;
                 // Set the recipe image
-                (document.getElementById('recipe-image') as HTMLImageElement).src = recipe.image;
+                (document.getElementById('recipe-image') as HTMLImageElement).src = recipes.image;
 
                 // Get the ingredient list element
                 const ingredientList = document.getElementById('ingredient-list');
                 // Iterate over the ingredient lines and add them to the list
-                recipe.ingredientLines.forEach(ingredient => {
+                recipes.ingredientLines.forEach(ingredient => {
                     // Create a new list item for each ingredient
                     const listItem = document.createElement('li');
                     listItem.innerText = ingredient; // Set the text of the list item

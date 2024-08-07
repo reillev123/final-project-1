@@ -25,7 +25,7 @@ import Layout from "../layouts/Layouts.astro";
             </div>
         </div>
         <!-- Container to display recipes, using Bootstrap row class -->
-        <div id="recipes-container" class="row"></div>
+        <div id="recipe-container" class="row"></div>
     </div>
 
     <script>
@@ -53,12 +53,12 @@ import Layout from "../layouts/Layouts.astro";
         // Function to load and display recipes
         async function loadRecipes() {
             const spinner = document.getElementById("spinner");
-            const recipesContainer =
-                document.getElementById("recipes-container");
+            const recipeContainer =
+                document.getElementById("recipe-container");
 
             // Show spinner and hide recipes container
             spinner.style.display = "block";
-            recipesContainer.style.display = "none";
+            recipeContainer.style.display = "none";
 
             try {
                 // Fetch and shuffle recipes, then take the first 9
@@ -72,21 +72,21 @@ import Layout from "../layouts/Layouts.astro";
             } finally {
                 // Hide spinner and show recipes container
                 spinner.style.display = "none";
-                recipesContainer.style.display = "flex";
+                recipeContainer.style.display = "flex";
             }
         }
 
      
     function renderRecipes(recipes) {
-        const recipesContainer = document.getElementById("recipes-container");
+        const recipeContainer = document.getElementById("recipe-container");
         // Clear any previous recipes
-        recipesContainer.innerHTML = "";
+        recipeContainer.innerHTML = "";
 
         recipes.forEach((recipe) => {
             // Create a new div element for each recipe
-            const recipeElement = document.createElement("div");
-            recipeElement.className = "col-md-4 mb-4"; // Bootstrap column classes
-            recipeElement.innerHTML = `
+            const recipesElement = document.createElement("div");
+            recipesElement.className = "col-md-4 mb-4"; // Bootstrap column classes
+            recipesElement.innerHTML = `
                 <div class="card">
                     <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
                     <div class="card-body">
@@ -99,7 +99,7 @@ import Layout from "../layouts/Layouts.astro";
                 </div>
             `;
             // Append the recipe element to the container
-            recipesContainer.appendChild(recipeElement);
+            recipeContainer.appendChild(recipesElement);
         });
 
        // Add event listeners to all elements with the class 'favourite-btn'

@@ -51,7 +51,7 @@
                     </li>
                     <!-- Search form -->
                     <li class="nav-item">
-                        <form class="d-flex" role="search" id="search-form">
+                        <form class="d-flex" role="search" id="search-bar">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
                             <button class="btn" type="submit">Search</button>
                         </form>
@@ -81,7 +81,7 @@
         });
     });
 
-    document.getElementById('search-form').addEventListener('submit', async function(event) {
+    document.getElementById('search-bar').addEventListener('submit', async function(event) {
             event.preventDefault();
             const query = (document.getElementById('search-input') as HTMLInputElement).value;
             const fullURL = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=${encodeURIComponent(query)}&app_id=d7193a6c&app_key=c9b8ee8a1b8166ef57bc491438a36768&dishType=Desserts`;

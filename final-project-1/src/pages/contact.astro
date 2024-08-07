@@ -64,7 +64,7 @@ import Layout from "../layouts/Layouts.astro";
             // Prevent the default form submission
             event.preventDefault();
             
-            // Typecast event target to HTMLFormElement
+            // Get the form element from the event target and cast it to HTMLFormElement
             const form = event.target as HTMLFormElement;
             
             // Check if the form is valid
