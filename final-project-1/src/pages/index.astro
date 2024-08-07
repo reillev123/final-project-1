@@ -104,7 +104,7 @@ function renderRecipe(recipe, containerId, recipes) {
             // Get the URI of the recipe associated with the button
             const recipeUri = this.getAttribute('data-uri');
             // Find the corresponding recipe object in the recipes array
-            const foundRecipe = recipes.find(r => encodeURIComponent(r.recipe.uri) === recipeUri);
+            const foundRecipe = recipes.find(recipes => encodeURIComponent(recipes.recipe.uri) === recipeUri);
 
             // Store the current recipe in localStorage
             localStorage.setItem('currentRecipe', JSON.stringify(foundRecipe.recipe));

@@ -21,6 +21,11 @@ import Layouts from "../layouts/Layouts.astro"
             return favorites ? JSON.parse(favorites) : [];
         }
 
+        // Function to save favorite recipes to localStorage
+        function saveFavoriteRecipes(favoriteRecipes) {
+            localStorage.setItem('favourites', JSON.stringify(favoriteRecipes));
+        }
+
         // Function to render favorite recipes on the page
         function renderFavoriteRecipes() {
             // Get the container where favorite recipes will be displayed
@@ -49,6 +54,9 @@ import Layouts from "../layouts/Layouts.astro"
                         <div class="card-body">
                             <h5 class="card-title">${recipe.label}</h5>
                             <a href="/final-project-1/recipe-details?uri=${encodeURIComponent(recipe.uri)}" class="btn btn-primary mt-2 view-recipe-btn">View Recipe</a>
+                            <button class="btn favorite-recipe-btn mt-2" data-uri="${encodeURIComponent(recipe.uri)}" style="color:white;">
+                                 <i class="fa-solid fa-heart"></i>
+                                 </button>
                         </div>
                     </div>
                 `;
@@ -61,9 +69,26 @@ import Layouts from "../layouts/Layouts.astro"
                 button.addEventListener('click', function(event) {
                     event.preventDefault();
                     const recipeUri = this.href.split('=')[1];
-                    const recipe = favoriteRecipes.find((r) => encodeURIComponent(r.uri) === recipeUri);
+                    const recipe = favoriteRecipes.find((recipes) => encodeURIComponent(recipes.uri) === recipeUri);
                     localStorage.setItem('currentRecipe', JSON.stringify(recipe));
                     window.location.href = this.href;
+                });
+            });
+
+            // Add event listener for favorite recipe buttons
+            document.querySelectorAll('.favorite-recipe-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const recipeUri = this.getAttribute('data-uri');
+                    const recipeIndex = favoriteRecipes.findIndex((recipes) => encodeURIComponent(recipes.uri) === recipeUri);
+
+                    if (recipeIndex !== -1) {
+                        // Remove the recipe from the favorites
+                        favoriteRecipes.splice(recipeIndex, 1);
+                        // Save the updated favorites to localStorage
+                        saveFavoriteRecipes(favoriteRecipes);
+                        // Optionally, remove the recipe card from the favorites page
+                        this.closest('.col-md-4').remove();
+                    }
                 });
             });
         }
