@@ -41,9 +41,9 @@ import Layouts from "../layouts/Layouts.astro"
             // Iterate over each favorite recipe
             favoriteRecipes.forEach((recipe) => {
                 // Create a new div element for each recipe
-                const recipeElement = document.createElement("div");
-                recipeElement.className = "col-md-4 mb-4"; // Assign Bootstrap column classes for styling
-                recipeElement.innerHTML = `
+                const recipesElement = document.createElement("div");
+                recipesElement.className = "col-md-4 mb-4"; // Assign Bootstrap column classes for styling
+                recipesElement.innerHTML = `
                     <div class="card">
                         <img src="${recipe.image}" class="card-img-top" alt="${recipe.label}">
                         <div class="card-body">
@@ -53,7 +53,7 @@ import Layouts from "../layouts/Layouts.astro"
                     </div>
                 `;
                 // Append the recipe element to the container
-                favoritesContainer.appendChild(recipeElement);
+                favoritesContainer.appendChild(recipesElement);
             });
 
             // Add event listener for view recipe buttons

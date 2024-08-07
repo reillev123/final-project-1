@@ -18,7 +18,7 @@
       <svg id="share-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
         <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
       </svg>
-      <div id="popup">Copied to clipboard!</div>
+      <div id="sharePopup">Copied to clipboard!</div>
     </a>
   </div>
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const svgElement = document.getElementById('share-svg');
 
   // Get the popup element with the ID 'popup'
-  const popup = document.getElementById('popup');
+  const sharePopup = document.getElementById('sharePopup');
 
   // Add a click event listener to the SVG element
   svgElement.addEventListener('click', () => {
@@ -42,21 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
     navigator.clipboard.writeText(link).then(() => {
       
       // Show the popup by setting its display to 'block'
-      popup.style.display = 'block';
+      sharePopup.style.display = 'block';
 
       // Set a timeout to change the popup's opacity to 1 (visible)
       setTimeout(() => {
-        popup.style.opacity = '1';
+        sharePopup.style.opacity = '1';
       }, 0);
 
       // Set another timeout to hide the popup after 2 seconds
       setTimeout(() => {
         // Set the popup's opacity to 0 (invisible)
-        popup.style.opacity = '0';
+        sharePopup.style.opacity = '0';
 
         // After the transition ends (300ms), set its display to 'none'
         setTimeout(() => {
-          popup.style.display = 'none';
+          sharePopup.style.display = 'none';
         }, 300); // Match this duration to CSS transition duration for smooth hiding
       }, 2000); // Duration to keep the popup visible
 

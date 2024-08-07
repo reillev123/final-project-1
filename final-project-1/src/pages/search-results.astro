@@ -8,35 +8,87 @@ import Layouts from "../layouts/Layouts.astro";
     <div class="container text-center mt-5">
         <h2>Search Results</h2>
         <!-- Container to display recipes, using Bootstrap row class -->
-        <div id="recipes-container" class="row"></div>
+        <div id="recipe-container" class="row"></div>
     </div>
 
     <script>
         // Wait until the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Function to render recipes in the container
             function renderRecipes(recipes) {
-                const container = document.getElementById('recipes-container');
-                container.innerHTML = ''; // Clear previous results
-                
-                // Iterate over each recipe and create a card element for it
-                recipes.forEach((recipe) => {
-                    const recipeElement = document.createElement('div');
-                    recipeElement.className = 'col-md-4'; // Bootstrap column classes
-                    recipeElement.innerHTML = `
-                        <div class="card mb-4">
-                            <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
-                            <div class="card-body">
-                                <h5 class="card-title">${recipe.recipe.label}</h5>
-                                <a href="/final-project-1/recipe-details" class="btn btn-primary" target="_blank">View Recipe</a>
-                            </div>
-                        </div>
-                    `;
-                    // Append the recipe element to the container
-                    container.appendChild(recipeElement);
-                });
-            }
+        const recipeContainer = document.getElementById("recipe-container");
+        // Clear any previous recipes
+        recipeContainer.innerHTML = "";
 
+        recipes.forEach((recipe) => {
+            // Create a new div element for each recipe
+            const recipesElement = document.createElement("div");
+            recipesElement.className = "col-md-4 mb-4"; // Bootstrap column classes
+            recipesElement.innerHTML = `
+                <div class="card">
+                    <img src="${recipe.recipe.image}" class="card-img-top" alt="${recipe.recipe.label}">
+                    <div class="card-body">
+                        <h5 class="card-title">${recipe.recipe.label}</h5>
+                        <a href="/final-project-1/recipe-details?uri=${encodeURIComponent(recipe.recipe.uri)}" class="btn btn-primary mt-2 view-recipe-btn">View Recipe</a>
+                        <button class="btn btn-outline-primary mt-2 favourite-btn">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            // Append the recipe element to the container
+            recipeContainer.appendChild(recipesElement);
+        });
+
+       // Add event listeners to all elements with the class 'favourite-btn'
+    document.querySelectorAll('.favourite-btn').forEach(button => {
+         // Add a click event listener to each 'favourite-btn'
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default button click behavior
+
+        // Get the icon element inside the button
+        const icon = this.querySelector('i');
+        // Check if the icon currently has the class 'fa-solid' (filled heart)
+        const isFilled = icon.classList.contains('fa-solid');
+        // Toggle the 'fa-regular' and 'fa-solid' classes based on the current state
+        icon.classList.toggle('fa-regular', isFilled);
+        icon.classList.toggle('fa-solid', !isFilled);
+
+        // Get the URI of the recipe associated with the button
+        const recipeUri = this.previousElementSibling.href.split('=')[1];
+        // Find the corresponding recipe object in the recipes array
+        const recipe = recipes.find((r) => encodeURIComponent(r.recipe.uri) === recipeUri);
+
+        // Retrieve the list of favourite recipes from localStorage or initialize an empty array
+        let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
+
+        if (isFilled) {
+            // If the heart was filled, remove the recipe from favourites
+            favourites = favourites.filter((fav) => fav.uri !== recipe.recipe.uri);
+        } else {
+            // If the heart was not filled, add the recipe to favourites
+            favourites.push(recipe.recipe);
+        }
+
+        // Update the favourites list in localStorage
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+    });
+});
+
+// Add event listeners to all elements with the class 'view-recipe-btn'
+document.querySelectorAll('.view-recipe-btn').forEach(button => {
+    // Add a click event listener to each 'view-recipe-btn'
+    button.addEventListener('click', function(event) {
+        // Get the URI of the recipe associated with the button
+        const recipeUri = this.href.split('=')[1];
+        // Find the corresponding recipe object in the recipes array
+        const recipe = recipes.find((r) => encodeURIComponent(r.recipe.uri) === recipeUri);
+
+        // Store the current recipe in localStorage
+        localStorage.setItem('currentRecipe', JSON.stringify(recipe.recipe));
+    });
+});
+
+    }
             // Function to fetch recipes from the API and render them
             function fetchAndRenderRecipes(query) {
                 const fullURL = `https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=${encodeURIComponent(query)}&app_id=d7193a6c&app_key=c9b8ee8a1b8166ef57bc491438a36768&dishType=Desserts`;

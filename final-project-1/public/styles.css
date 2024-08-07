@@ -1,7 +1,8 @@
-/* Sets the background color and text color for the entire body */
+/* Sets the background colour and text colour for the entire body */
 body {
     background-color: #ffe6f2;
     color: #4d004d;
+/* Adding custom background*/
     background-image: url('/final-project-1/images/PWBackgroundBig.png');
 }
 
@@ -161,7 +162,7 @@ body {
         display: flex;
     }
 
-    /* Adjust the dropdown content position in mobile view */
+    /* Adjusts the dropdown content position in mobile view */
     .dropdown-content {
         margin-left: 40%;
     }
@@ -174,7 +175,7 @@ body {
     padding-bottom: 1%;
 }
 
-/* Styles for the form group, setting the text color */
+/* Styles for the form group, setting the text colour */
 .form-group {
     color: #4d004d; 
 }
@@ -183,14 +184,14 @@ body {
 padding-top: 2%
 }
 
-/* Styles for buttons with a specific background and border color */
+/* Styles for buttons with a specific background and border colour */
 .btn {
     background-color: #df1fdf;
     border-color: #cc00cc;
     
 }
 
-/* Changes button color when hovered over */
+/* Changes button colour when hovered over */
 .btn:hover {
     background-color: pink;
     color: #4d004d;
@@ -249,8 +250,7 @@ padding-top: 2%
 }
 
 
-
-/* Sets footer color */
+/* Sets footer colour */
 .footer {
     background-color: #cc00cc;  
     height: 18vh;
@@ -262,7 +262,7 @@ padding-top: 2%
     padding-left: 1%;
 }
 
-/* Sets the text color for specific navigation links */
+/* Sets the text colour for specific navigation links */
 a.nav-link-1 {
     color: #ff66b2;
 }
@@ -285,7 +285,7 @@ a.nav-link-1 {
     text-decoration: none;
 }
 
-/* Changes color of social icon links when hovered over */
+/* Changes colour of social icon links when hovered over */
 .social-icons a:hover {
     color: #a535a5; 
 }
@@ -297,10 +297,10 @@ a.nav-link-1 {
 }
 
 /* Styles for the popup element */
-#popup {
+#sharePopup {
     display: none;
     position: absolute;
-    top: -10px; /* Adjust as needed */
+    top: -10px; 
     left: 100%;
     transform: translateX(-50%);
     padding: 8px 12px;
@@ -335,12 +335,12 @@ a.nav-link-1 {
 
 /* Styles for the carousel container */
 .carousel {
-    width: 100%; /* Set the carousel to take the full width of its container */
-    max-height: 400px !important; /* Set a maximum height for the carousel */
-    padding-bottom: 5%; /* Add padding at the bottom */
-    display: flex; /* Use flexbox for layout */
-    padding-left: 20%; /* Add padding on the left side */
-    justify-content: center; /* Center the content horizontally */
+    width: 100%; 
+    max-height: 400px !important; 
+    padding-bottom: 5%;
+    display: flex; 
+    padding-left: 20%; 
+    justify-content: center; 
 }
 
 /* Styles for the home page carousel */
@@ -369,27 +369,34 @@ a.nav-link-1 {
     color: #ff66b2; 
 }
 
-/* Styles for the icon inside the favorite button */
+/* Styles for the icon inside the favourite button */
 .favourite-btn i {
     color: white; 
 }
 
+/* Container for recipe details */
 .recipe-details {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
+    display: flex; 
+    align-items: flex-start; 
+    gap: 20px; 
 }
 
+/* Styles for the recipe image */
 .recipe-image {
-    max-width: 300px;
-    height: auto;
+    max-width: 600px; 
+    height: auto; 
+    padding-top: 5%; 
+    padding-left: 5%;
 }
 
+/* Styles for the recipe information container */
 .recipe-info {
-    flex: 1;
+    flex: 1; 
+    margin-right: 20%; 
 }
 
+/* Styles for the ingredient list */
 .ingredient-list {
-    list-style-type: disc;
-    padding-left: 20px;
+    list-style-type: disc; 
+    padding-left: 20px; 
 }
