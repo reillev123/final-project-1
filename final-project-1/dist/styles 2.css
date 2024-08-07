@@ -1,0 +1,402 @@
+/* Sets the background colour and text colour for the entire body */
+body {
+    background-color: #ffe6f2;
+    color: #4d004d;
+/* Adding custom background*/
+    background-image: url('/final-project-1/images/PWBackgroundBig.png');
+}
+
+/* Styles for the scrollbar width */
+::-webkit-scrollbar {
+    width: 10px; 
+}
+
+/* Styles for the scrollbar track */
+::-webkit-scrollbar-track {
+    background: #fff; 
+}
+
+/* Styles for the scrollbar handle (thumb) */
+::-webkit-scrollbar-thumb {
+    background: #a535a5; 
+}
+
+/* Styles for the scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #a535a5; 
+}
+
+/* Styles for the header */
+.header {
+    background-color: #ff66b2;   
+    height: 12vh;
+    z-index: 1000; /* Ensure header is above other elements */
+}
+
+/* Styles for the container inside the header */
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1vh;
+}
+
+/* Styles for the header content */
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Styles for the logo text */
+.logotext a {
+    color: white;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+/* Styles for the navigation menu */
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Styles for the navigation list */
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for each navigation item */
+.nav-item {
+    margin-left: 1rem;
+}
+
+/* Styles for navigation links */
+.nav-link {
+    color: white;
+    text-decoration: none;
+}
+
+/* Styles for dropdown content */
+.dropdown-content {
+    display: none;
+    min-width: 160px;
+    position: absolute;
+    background-color: #f9f9f9;
+    z-index: 1;
+}
+
+/* Styles for links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Display dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Styles for the hamburger menu icon */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+/* Styles for each line in the hamburger menu icon */
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+/* Media query for screens with max width of 768px */
+@media (max-width: 768px) {
+    /* Hide the navigation menu initially */
+    .nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #ff66b2;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        z-index: 1001; /* Ensure nav is above other elements */
+    }
+
+    /* Styles for the navigation list in mobile view */
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Styles for each navigation item in mobile view */
+    .nav-item {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    /* Styles for navigation links in mobile view */
+    .nav-link {
+        padding: 1rem;
+        display: block;
+    }
+
+    /* Display the hamburger menu icon */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Styles for active navigation menu in mobile view */
+    .nav-active {
+        display: flex;
+    }
+
+    /* Adjusts the dropdown content position in mobile view */
+    .dropdown-content {
+        margin-left: 40%;
+    }
+}
+
+/* Styles for the form element, setting width and centering it */
+.form {
+    width: 70%;
+    padding-left: 30%;  /* Centering contact form */
+    padding-bottom: 1%;
+}
+
+/* Styles for the form group, setting the text colour */
+.form-group {
+    color: #4d004d; 
+}
+
+.form-group-1{
+padding-top: 2%
+}
+
+/* Styles for buttons with a specific background and border colour */
+.btn {
+    background-color: #df1fdf;
+    border-color: #cc00cc;
+    
+}
+
+/* Changes button colour when hovered over */
+.btn:hover {
+    background-color: pink;
+    color: #4d004d;
+}
+
+
+
+/* Custom size for images, centered with block display and automatic margins */
+.custom-img-size {
+    width: 380px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1%;
+}
+
+/* Sets margin-top for elements with class 'auth-container' */
+.auth-container {
+    margin-top: 5rem;
+}
+
+/* Styles the card element with rounded corners and box shadow */
+.card {
+    border: 1px solid pink;;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+    height: 430px; /* Set a fixed height for all cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 200px; /* Set a smaller max-height for images */
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+/* Styles for the signup text */
+.signup {
+    color: #ff66b2;
+}
+
+/* Styles for the terms text */
+.terms {
+    color: #ff66b2;
+}
+
+/* Styles for the checkbox */
+.checkbox {
+   accent-color: #ff66b2;
+}
+
+
+/* Sets footer colour */
+.footer {
+    background-color: #cc00cc;  
+    height: 18vh;
+    position: sticky;
+}
+
+/* Styles for the sitemap */
+.sitemap {
+    padding-left: 1%;
+}
+
+/* Sets the text colour for specific navigation links */
+a.nav-link-1 {
+    color: #ff66b2;
+}
+
+/* Aligns elements with the class 'social' to the right */
+.social {
+    float: right;
+}
+
+/* Styles for social icons container, centering content and setting gap between items */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Styles for social icon links, removing text decoration */
+.social-icons a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Changes colour of social icon links when hovered over */
+.social-icons a:hover {
+    color: #a535a5; 
+}
+
+/* Sets the size for social icon SVGs */
+.social-icons svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Styles for the popup element */
+#sharePopup {
+    display: none;
+    position: absolute;
+    top: -10px; 
+    left: 100%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    background-color: #ff66b2;
+    color: #fff;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+}
+
+/* Styles for the share icon on hover */
+#share-svg:hover {
+    fill: #a535a5; 
+    cursor: pointer;
+}
+
+/* Styles for the back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    display: none; /* Hidden by default */
+    background-color: #ff66b2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000; /* Ensure button is above other elements */
+}
+
+/* Styles for the carousel container */
+.carousel {
+    width: 100%; 
+    max-height: 400px !important; 
+    padding-bottom: 5%;
+    display: flex; 
+    padding-left: 20%; 
+    justify-content: center; 
+}
+
+/* Styles for the home page carousel */
+.home {
+    width: 70%; 
+    max-height: 360px !important; 
+    padding-left: 5%; 
+}
+
+/* Styles for the about page carousel  */
+.about {
+    width: 70%; 
+    max-height: 360px;
+    padding-right: 17%; 
+}
+
+/* Styles for the spinner wrapper */
+.spinner-wrapper {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+/* Styles for the spinner border */
+.spinner-border {
+    color: #ff66b2; 
+}
+
+/* Styles for the icon inside the favourite button */
+.favourite-btn i {
+    color: white; 
+}
+
+/* Container for recipe details */
+.recipe-details {
+    display: flex; 
+    align-items: flex-start; 
+    gap: 20px; 
+}
+
+/* Styles for the recipe image */
+.recipe-image {
+    max-width: 600px; 
+    height: auto; 
+    padding-top: 5%; 
+    padding-left: 5%;
+}
+
+/* Styles for the recipe information container */
+.recipe-info {
+    flex: 1; 
+    margin-right: 20%; 
+}
+
+/* Styles for the ingredient list */
+.ingredient-list {
+    list-style-type: disc; 
+    padding-left: 20px; 
+}
