@@ -27,10 +27,15 @@ Social Media Icons: Check us out on Social Media!
 Share Icon: Share our website with your friends and Family
 Recipes Api: Connected to the Edamam api which fetches recipes and displays them.
 Form Api: sends an email to you once you have submitted a contact form 
+Custon loading spinner: Custom loading spinner on recipe pages
 
 Directory Structure
 
 BakeMyDay/
+│
+├── docs/
+│   ├── lighthouse.html
+│   └── api.txt
 │
 ├── public/
 │   ├── styles.css
@@ -86,6 +91,7 @@ npm install
 Start the development server:
 npm run dev
 The website should now be running at  http://localhost:4321/final-project-1
+Note: you will need to cd down into final-project-1 again to run npm run dev. So the project will open on final-project-1 and then cd into final-project-1. 
 
 Hosted Site 
 Our website is hosted at https://reillev123.github.io/final-project-1/
