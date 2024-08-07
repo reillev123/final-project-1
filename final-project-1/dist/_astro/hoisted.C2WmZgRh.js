@@ -1,4 +1,4 @@
-import"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js";import"https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js";import"./SocialMediaIcons.astro_astro_type_script_index_0_lang.Bx-rmOrY.js";document.addEventListener("DOMContentLoaded",function(){function l(i){const r=document.getElementById("recipe-container");r.innerHTML="",i.forEach(e=>{const t=document.createElement("div");t.className="col-md-4 mb-4",t.innerHTML=`
+import"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js";import"https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js";import"./SocialMediaIcons.astro_astro_type_script_index_0_lang.BAJwamCf.js";document.addEventListener("DOMContentLoaded",function(){function l(i){const r=document.getElementById("recipe-container");r.innerHTML="",i.forEach(e=>{const t=document.createElement("div");t.className="col-md-4 mb-4",t.innerHTML=`
                 <div class="card">
                     <img src="${e.recipe.image}" class="card-img-top" alt="${e.recipe.label}">
                     <div class="card-body">
