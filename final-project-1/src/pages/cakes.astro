@@ -109,7 +109,7 @@ document.querySelectorAll('.favourite-btn').forEach(button => {
         // Get the URI of the recipe associated with the button
         const recipeUri = this.previousElementSibling.href.split('=')[1];
         // Find the corresponding recipe object in the recipes array
-        const recipe = recipes.find((r) => encodeURIComponent(r.recipe.uri) === recipeUri);
+        const recipe = recipes.find((recipes) => encodeURIComponent(recipes.recipe.uri) === recipeUri);
 
         // Retrieve the list of favourite recipes from localStorage or initialize an empty array
         let favourites = JSON.parse(localStorage.getItem('favourites')) || [];
@@ -134,7 +134,7 @@ document.querySelectorAll('.view-recipe-btn').forEach(button => {
         // Get the URI of the recipe associated with the button
         const recipeUri = this.href.split('=')[1];
         // Find the corresponding recipe object in the recipes array
-        const recipe = recipes.find((r) => encodeURIComponent(r.recipe.uri) === recipeUri);
+        const recipe = recipes.find((recipes) => encodeURIComponent(recipes.recipe.uri) === recipeUri);
 
         // Store the current recipe in localStorage
         localStorage.setItem('currentRecipe', JSON.stringify(recipe.recipe));

@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layouts.astro";
-
 ---
 <!--Creating contact us page -->
 <Layout>
@@ -13,7 +12,7 @@ import Layout from "../layouts/Layouts.astro";
             get in touch with us.
         </p>
         <!-- Adding Form with input boxes and a send message button-->
-        <form class="mt-4" id="contactForm">
+        <form class="mt-4" id="contactForm" action="https://formspree.io/f/mwpebpqy" method="POST">
             <div class="form">
                 <!-- Form group for name input -->
                 <div class="form-group">
@@ -22,6 +21,7 @@ import Layout from "../layouts/Layouts.astro";
                         type="text"
                         class="form-control"
                         id="name"
+                        name="name"
                         placeholder="Your Name"
                         required
                     />
@@ -33,6 +33,7 @@ import Layout from "../layouts/Layouts.astro";
                         type="email"
                         class="form-control"
                         id="email"
+                        name="email"
                         placeholder="Your Email"
                         required
                     />
@@ -43,38 +44,76 @@ import Layout from "../layouts/Layouts.astro";
                     <textarea
                         class="form-control"
                         id="message"
+                        name="message"
                         rows="3"
                         placeholder="Your Message"
                         required></textarea>
                 </div>
-                <!-- checkbox for user to accpet T&C's -->
+                <!-- checkbox for user to accept T&C's -->
                 <input class="checkbox" type="checkbox" name="tandc" required /> Do you agree to our
                 <a class="terms" href="/final-project-1/terms">terms and conditions</a>?
                 <!-- Submit button for send message -->
                 <button
                     type="submit"
                     class="btn mt-3"
-                    id="send-message-button">Send Message</button
-                >
+                    id="send-message-button">Send Message</button>
             </div>
         </form>
     </div>
     <script>
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            // Prevent the default form submission
-            event.preventDefault();
-            
-            // Get the form element from the event target and cast it to HTMLFormElement
-            const form = event.target as HTMLFormElement;
-            
-            // Check if the form is valid
-            if (form.checkValidity()) {
-                // If the form is valid, redirect to the new page
-                window.location.href = "/final-project-1/response";
+       // Wait for the DOM content to be fully loaded before running the script
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the form element by its ID
+    let form = document.getElementById("contactForm") as HTMLFormElement;
+    
+    // Function to handle form submission
+    async function handleSubmit(event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+        
+        // Get the status element where error/success messages will be displayed
+        const status = document.getElementById("status");
+        
+        // Create a FormData object from the form
+        const data = new FormData(event.target);
+    
+        try {
+            // Send the form data using the fetch API
+            const response = await fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+    
+            // Check if the response is OK (status in the range 200-299)
+            if (response.ok) {
+                // Redirect to the response page
+                window.location.href = "/final-project-1/response"; 
+                // Reset the form fields
+                form.reset();
             } else {
-                // If the form is not valid, show validation errors
-                form.reportValidity();
+                // If response is not OK, parse the response JSON
+                const responseData = await response.json();
+                // Check if there are errors in the response data
+                if (responseData.errors) {
+                    // Display the error messages
+                    status.innerHTML = responseData.errors.map(error => error.message).join(", ");
+                } else {
+                    // Display a generic error message
+                    status.innerHTML = "Oops! There was a problem submitting your form";
+                }
             }
-        });
+        } catch (error) {
+            // Catch and display any errors that occurred during the fetch operation
+            status.innerHTML = "Oops! There was a problem submitting your form";
+        }
+    }
+    
+    // Add an event listener to the form for the submit event
+    form.addEventListener("submit", handleSubmit);
+});
+
     </script>
 </Layout>
